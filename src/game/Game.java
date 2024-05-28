@@ -1,6 +1,8 @@
 package game;
 
 import game.level.Level;
+import game.player.Player;
+
 import java.util.Scanner;
 
 public class Game {
@@ -12,6 +14,7 @@ public class Game {
     public static final char DOOR = 'P';
 
     private Level l = new Level();
+    private Player p = new Player();
 
     public Game() {}
 
@@ -42,6 +45,7 @@ public class Game {
             e.printStackTrace();
         }
 
+        initAllPos();
         play();
     }
 
@@ -57,9 +61,11 @@ public class Game {
         System.exit(0);
     }
 
+    public void initAllPos() {
+
+    }
+
     public void play() {
-        if (l.getLevel() != null) {
-            System.out.println(1);
-        }
+
     }
 }
