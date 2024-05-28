@@ -29,7 +29,7 @@ public class LevelChooser {
 
             // let the user choose between levels
             try (Scanner scanUserInput = new Scanner(System.in)) {
-                System.out.println("Choose between one of those levels : ");
+                System.out.print("Choose between one of those levels : ");
                 int resultLevel = scanUserInput.nextInt();
 
                 //if the levels chose don't exist, let the user choose another time
