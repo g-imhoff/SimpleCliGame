@@ -14,7 +14,7 @@ public class LevelChooser {
 
     public LevelChooser() {}
 
-    public void choose() {
+    public void choose(Scanner scanUserInput) {
         //print all the available level
         int result = getAllLevel();
 
@@ -28,26 +28,25 @@ public class LevelChooser {
             }
 
             // let the user choose between levels
-            try (Scanner scanUserInput = new Scanner(System.in)) {
-                System.out.print("Choose between one of those levels : ");
-                int resultLevel = scanUserInput.nextInt();
+            System.out.print("Choose between one of those levels : ");
+            int resultLevel = scanUserInput.nextInt();
 
-                //if the levels chose don't exist, let the user choose another time
-                while(levelNames[resultLevel] == null || levelNames[resultLevel].isEmpty()) {
-                    System.out.println("this level don't exist, choose another one");
-                    resultLevel = scanUserInput.nextInt();
-                }
-
-                //set the levelChoose instance
-                levelChoose = levelNames[resultLevel];
+            //if the levels chose don't exist, let the user choose another time
+            while(levelNames[resultLevel] == null || levelNames[resultLevel].isEmpty()) {
+                System.out.println("this level don't exist, choose another one");
+                resultLevel = scanUserInput.nextInt();
             }
+
+            //set the levelChoose instance
+            levelChoose = levelNames[resultLevel];
+
 
             // create the level path and set it
             finalLevelPath = levelPath + File.separator + levelChoose;
         } else {
             // let the user change the level folder
             System.out.println("The folder is empty or does not exist.");
-            levelPathModifier();
+            levelPathModifier(scanUserInput);
         }
     }
 
@@ -77,16 +76,12 @@ public class LevelChooser {
         return 0;
     }
 
-    public void levelPathModifier() {
+    public void levelPathModifier(Scanner scanUserInput) {
         // let the user change the path of the level folder
-        try (Scanner scanUserInput = new Scanner(System.in)) {
-            System.out.println("Where is your level folder ?");
-            levelPath = scanUserInput.next();
-            System.out.println("Your level folder is now set at : " + levelPath);
-            choose();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println("Where is your level folder ?");
+        levelPath = scanUserInput.next();
+        System.out.println("Your level folder is now set at : " + levelPath);
+        choose(scanUserInput);
     }
 
     public String getFinalLevelPath() {

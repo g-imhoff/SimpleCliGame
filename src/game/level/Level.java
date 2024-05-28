@@ -3,12 +3,14 @@ package game.level;
 import game.level.chooseLevel.LevelChooser;
 import game.level.chooseLevel.LevelReader;
 
+import java.util.Scanner;
+
 public class Level {
     private char[][] level;
 
-    public void chooseLevel() {
+    public void chooseLevel(Scanner scanUserInput) {
         LevelChooser levelChooser = new LevelChooser();
-        levelChooser.choose();
+        levelChooser.choose(scanUserInput);
         String levelPath = levelChooser.getFinalLevelPath();
         LevelReader levelReader = new LevelReader(levelPath);
         level = levelReader.readLevel();

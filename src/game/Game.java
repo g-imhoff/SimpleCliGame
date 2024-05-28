@@ -18,45 +18,47 @@ public class Game {
     public static final char DOWN = 's';
     public static final char LEFT = 'q';
     public static final char RIGHT = 'd';
+    public static final char LEAVE = 'e';
 
 
     private Level l = new Level();
     private Player p = new Player();
 
-    public Game() {}
+    private Scanner scanUserInput;
+
+    public Game(Scanner scanUserInput) {
+        this.scanUserInput = scanUserInput;
+    }
+
 
     public void launchStartingPage() {
         // Used to read the input
-        try (Scanner scanUserInput = new Scanner(System.in)) {
-            System.out.println("1 - Choose a level");
-            System.out.println("2 - Generate a level");
-            System.out.println("3 - Exit game");
+        System.out.println("1 - Choose a level");
+        System.out.println("2 - Generate a level");
+        System.out.println("3 - Exit game");
 
-            System.out.print("What do you want to do : ");
+        System.out.print("What do you want to do : ");
 
-            int inputLine = scanUserInput.nextInt();
+        int inputLine = scanUserInput.nextInt();
 
-            switch (inputLine) {
-                case 1:
-                    chooseLevel();
-                    break;
+        switch (inputLine) {
+            case 1:
+                chooseLevel();
+                break;
 
-                case 2:
-                    generateLevel();
-                    break;
+            case 2:
+                generateLevel();
+                break;
 
-                case 3:
-                    exitGame();
-                    break;
+            case 3:
+                exitGame();
+                break;
 
-                default :
-                    System.out.println("This key doesnt mean anything");
-                    System.exit(0);
-                    break;
+            default :
+                System.out.println("This key doesnt mean anything");
+                System.exit(0);
+                break;
 
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -65,7 +67,7 @@ public class Game {
     }
 
     public void chooseLevel() {
-        l.chooseLevel();
+        l.chooseLevel(scanUserInput);
     }
 
     public void generateLevel() {
@@ -82,36 +84,36 @@ public class Game {
     }
 
     public void play() {
-        try (Scanner scanUserInput = new Scanner(System.in)) {
-            int inputLine;
+        char inputLine;
 
-            while (!(p.onExit())) {
-                l.printLevel();
-                printKeys();
+        while (!(p.onExit())) {
+            l.printLevel();
+            printKeys();
 
-                System.out.print("What do you want to do : ");
-                inputLine = scanUserInput.nextInt();
+            System.out.print("What do you want to do : ");
+            inputLine = scanUserInput.next().charAt(0);
 
-                switch (inputLine) {
-                    case UP:
-                        System.out.println(UP);
-                        break;
+            switch (inputLine) {
+                case UP:
+                    System.out.println(UP);
+                    break;
 
-                    case DOWN:
-                        System.out.println(DOWN);
-                        break;
+                case DOWN:
+                    System.out.println(DOWN);
+                    break;
 
-                    case LEFT:
-                        System.out.println(LEFT);
-                        break;
+                case LEFT:
+                    System.out.println(LEFT);
+                    break;
 
-                    case RIGHT:
-                        System.out.println(RIGHT);
-                        break;
-                }
+                case RIGHT:
+                    System.out.println(RIGHT);
+                    break;
+
+                case LEAVE :
+                    launchStartingPage();
+                    break;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
