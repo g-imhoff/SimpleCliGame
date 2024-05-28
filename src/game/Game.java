@@ -5,6 +5,12 @@ import java.util.Scanner;
 
 public class Game {
     public static final int MAX_LEVELS = 256;
+    public static final char WALL = '#';
+    public static final char PLAYER = 'J';
+    public static final char TREASURE = 'T';
+    public static final char EXIT = 'S';
+    public static final char DOOR = 'P';
+
     private Level l = new Level();
 
     public Game() {}
@@ -35,22 +41,20 @@ public class Game {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        play();
     }
 
     public void chooseLevel() {
         l.chooseLevel();
-        //play();
-        return;
     }
 
     public void generateLevel() {
         l.generateLevel();
-        //play();
-        return;
     }
 
     public void exitGame() {
-        return;
+        System.exit(0);
     }
 
     public void play() {

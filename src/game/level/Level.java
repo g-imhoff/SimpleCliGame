@@ -12,7 +12,6 @@ public class Level {
         String levelPath = levelChooser.getFinalLevelPath();
         LevelReader levelReader = new LevelReader(levelPath);
         level = levelReader.readLevel();
-        printLevel();
     }
 
     public void generateLevel() {
