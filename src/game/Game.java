@@ -39,13 +39,13 @@ public class Game {
 
     public void chooseLevel() {
         l.chooseLevel();
-        play();
+        //play();
         return;
     }
 
     public void generateLevel() {
         l.generateLevel();
-        play();
+        //play();
         return;
     }
 

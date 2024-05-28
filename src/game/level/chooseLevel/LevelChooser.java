@@ -80,4 +80,8 @@ public class LevelChooser {
             e.printStackTrace();
         }
     }
+
+    public String getFinalLevelPath() {
+        return finalLevelPath;
+    }
 }
