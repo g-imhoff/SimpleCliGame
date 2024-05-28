@@ -53,7 +53,7 @@ public class Game {
     }
 
     public void play() {
-        if (l.getLevel() != NULL) {
+        if (l.getLevel() != null) {
             System.out.println(1);
         }
     }
