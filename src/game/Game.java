@@ -4,6 +4,7 @@ import game.level.Level;
 import java.util.Scanner;
 
 public class Game {
+    public static final int MAX_LEVELS = 256;
     private Level l = new Level();
 
     public Game() {}
