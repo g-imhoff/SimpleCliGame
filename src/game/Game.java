@@ -1,11 +1,12 @@
 package game;
 
+import game.level.Level;
 import java.util.Scanner;
 
 public class Game {
-    public Game() {
+    private Level l = new Level();
 
-    }
+    public Game() {}
 
     public void launchStartingPage() {
         // Used to read the input
@@ -36,14 +37,24 @@ public class Game {
     }
 
     public void chooseLevel() {
-        System.out.println("Choose a level");
+        l.chooseLevel();
+        play();
+        return;
     }
 
     public void generateLevel() {
-        System.out.println("Generate a level");
+        l.generateLevel();
+        play();
+        return;
     }
 
     public void exitGame() {
-        System.out.println("Exit game");
+        return;
+    }
+
+    public void play() {
+        if (l.getLevel() != NULL) {
+            System.out.println(1);
+        }
     }
 }
