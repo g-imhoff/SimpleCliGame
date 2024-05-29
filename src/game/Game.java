@@ -21,6 +21,13 @@ public class Game {
     public static final char RIGHT = 'd';
     public static final char LEAVE = 'e';
 
+    public static final int WON = 1;
+    public static final int PLAYING = 0;
+    public static final int GAME_LEFT = -1;
+
+    public static final char YES = 'y';
+    public static final char NO = 'n';
+
     private Level l = new Level();
 
     private final Scanner scanUserInput;
@@ -62,7 +69,11 @@ public class Game {
     }
 
     public void printKeys() {
-        System.out.println("Press " + UP + " to move up, " + DOWN + " to move down, " + LEFT + " to move left, " + RIGHT + " to move right");
+        System.out.print("Press " + UP + " to move up, " + DOWN + " to move down, " + LEFT + " to move left, " + RIGHT + " to move right : ");
+    }
+
+    public void printYesNo() {
+        System.out.print("Press " + YES + " to say yes, " + NO + " to say no : ");
     }
 
     public static void clearScreen() {
@@ -83,11 +94,39 @@ public class Game {
     }
 
     public void play() {
-        while (!(l.getP().onExit())) {
+        int result = PLAYING;
+        while (result == PLAYING) {
             clearScreen();
             l.printLevel();
             printKeys();
-            l.move(scanUserInput);
+            result = l.move(scanUserInput);
+        }
+
+        String userInput;
+
+        switch (result) {
+            case GAME_LEFT:
+                System.out.println("You left the game, do you want to play again ?");
+                printYesNo();
+                userInput = scanUserInput.nextLine();
+                if (!userInput.isEmpty()) {
+                    if (userInput.charAt(0) == YES) launchStartingPage();
+                    else if (userInput.charAt(0) == NO) System.out.println("Goodbye !");
+                    else System.out.println("Erreur votre réponse n'existe pas !");
+                }
+
+                break;
+
+            case WON:
+                System.out.println("You won game, do you want to play again ?");
+                printYesNo();
+                userInput = scanUserInput.nextLine();
+
+                if (userInput.charAt(0) == YES) launchStartingPage();
+                else if (userInput.charAt(0) == NO) System.out.println("Well played and Goodbye !");
+                else System.out.println("Erreur votre réponse n'existe pas !");
+                break;
+
         }
     }
 }

@@ -53,7 +53,7 @@ public class Level {
         }
     }
 
-    public void move(Scanner scanUserInput) {
+    public int move(Scanner scanUserInput) {
         System.out.print("What do you want to do : ");
         char inputLine = scanUserInput.next().charAt(0);
 
@@ -73,6 +73,11 @@ public class Level {
             case RIGHT:
                 setLevel(p.move(new Pos(0, 1), level));
                 break;
+
+            case LEAVE:
+                //means that we did'nt finish the game, but just left the game
+                return -1;
+
         }
 
         List<Pos> allDoorPos = d.getAllPos();
@@ -82,6 +87,8 @@ public class Level {
                 level[doorPos.getX()][doorPos.getY()] = 'P';
             }
         });
+
+        return 0;
     }
 
     public Player getP() {
