@@ -69,7 +69,7 @@ public class Game {
     }
 
     public void printKeys() {
-        System.out.print("Press " + UP + " to move up, " + DOWN + " to move down, " + LEFT + " to move left, " + RIGHT + " to move right : ");
+        System.out.println("Press " + UP + " to move up, " + DOWN + " to move down, " + LEFT + " to move left, " + RIGHT + " to move right, " + LEAVE + " to exit");
     }
 
     public void printYesNo() {

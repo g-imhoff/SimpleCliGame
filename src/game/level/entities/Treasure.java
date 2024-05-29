@@ -51,11 +51,15 @@ public class Treasure implements Entities {
         Random rand = new Random();
 
         int rand_int = rand.nextInt(100);
+        System.out.println("Premier rand int " + rand_int);
 
         if (rand_int > 90) {
             int emptySpace = howManyEmpty(level);
-            int rand_int2 = rand.nextInt(emptySpace);
+            int rand_int2 = rand.nextInt(emptySpace - 1) + 1; // le rand envoie un nombre entre 0 et 22 (dans le cas ou empty space 23, +1 on a 1 a 23
+            System.out.println("Nombre de empty space " + emptySpace);
+            System.out.println("Deuxieme rand int " + rand_int2);
             Pos posNewTreasure = spaceToPos(rand_int2, level);
+            System.out.println("Position du nouveau" +  posNewTreasure);
 
             if (posNewTreasure != null) {
                 level = addTreasure(posNewTreasure, level);
@@ -95,7 +99,7 @@ public class Treasure implements Entities {
     }
 
     public char[][] addTreasure(Pos p, char[][] level) {
-        level[p.getX()][p.getX()] = 'T';
+        level[p.getX()][p.getY()] = 'T';
         return level;
     }
 }
