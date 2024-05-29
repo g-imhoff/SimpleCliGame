@@ -9,7 +9,6 @@ public class Main {
         Scanner scanUserInput = new Scanner(System.in);
         Game g = new Game(scanUserInput);
         g.launchStartingPage();
-        g.initAllPos();
         g.play();
     }
 }

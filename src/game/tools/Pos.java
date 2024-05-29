@@ -27,4 +27,8 @@ public class Pos {
     public String toString() {
         return "(" + x + ", " + y + ")";
     }
+
+    public static Pos add(Pos p1, Pos p2) {
+        return new Pos(p1.getX() + p2.getX(), p1.getY() + p2.getY());
+    }
 }

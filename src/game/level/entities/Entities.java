@@ -1,7 +1,9 @@
-package game.entities;
+package game.level.entities;
 
 import game.tools.Pos;
 import game.level.Level;
+
+import java.util.List;
 
 public interface Entities {
     Pos[] allEntities = null;
@@ -9,6 +11,6 @@ public interface Entities {
     static Boolean isit(Pos p) {
         return null;
     }
-    static Pos[] allPos (Level l) { return null; }
+    static List<Pos> allPos (Level l) { return null; }
 
 }

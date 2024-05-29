@@ -1,6 +1,7 @@
 package game;
 
 import game.level.Level;
+import game.level.entities.Door;
 import game.player.Player;
 import game.tools.Pos;
 
@@ -20,11 +21,9 @@ public class Game {
     public static final char RIGHT = 'd';
     public static final char LEAVE = 'e';
 
-
     private Level l = new Level();
-    private Player p = new Player();
 
-    private Scanner scanUserInput;
+    private final Scanner scanUserInput;
 
     public Game(Scanner scanUserInput) {
         this.scanUserInput = scanUserInput;
@@ -63,7 +62,7 @@ public class Game {
     }
 
     public void printKeys() {
-        System.out.println("Press " + UP + " to move up, " + DOWN + " to move down, " + LEFT + " to move left, " + RIGHT + " to move right, " + LEAVE + " to exit");
+        System.out.println("Press " + UP + " to move up, " + DOWN + " to move down, " + LEFT + " to move left, " + RIGHT + " to move right");
     }
 
     public static void clearScreen() {
@@ -83,43 +82,12 @@ public class Game {
         System.exit(0);
     }
 
-    public void initAllPos() {
-        Pos playerPositon = p.whereIsPlayer(l.getLevel());
-        p.setPos(playerPositon);
-    }
-
     public void play() {
-        char inputLine;
-
-        while (!(p.onExit())) {
+        while (!(l.getP().onExit())) {
             clearScreen();
             l.printLevel();
             printKeys();
-
-            System.out.print("What do you want to do : ");
-            inputLine = scanUserInput.next().charAt(0);
-
-            switch (inputLine) {
-                case UP:
-                    System.out.println(UP);
-                    break;
-
-                case DOWN:
-                    System.out.println(DOWN);
-                    break;
-
-                case LEFT:
-                    System.out.println(LEFT);
-                    break;
-
-                case RIGHT:
-                    System.out.println(RIGHT);
-                    break;
-
-                case LEAVE :
-                    launchStartingPage();
-                    break;
-            }
+            l.move(scanUserInput);
         }
     }
 }
