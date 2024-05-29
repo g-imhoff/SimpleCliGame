@@ -101,4 +101,8 @@ public class Level {
     public Door getD() {
         return d;
     }
+
+    public Treasure getT() {
+        return t;
+    }
 }

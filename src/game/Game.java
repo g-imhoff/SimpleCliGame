@@ -100,6 +100,7 @@ public class Game {
             l.printLevel();
             printKeys();
             result = l.move(scanUserInput);
+            l.setLevel(l.getT().randomNewTreasure(l.getLevel()));
         }
 
         String userInput;
