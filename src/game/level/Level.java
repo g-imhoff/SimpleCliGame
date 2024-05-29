@@ -3,6 +3,7 @@ package game.level;
 import game.level.chooseLevel.LevelChooser;
 import game.level.chooseLevel.LevelReader;
 import game.level.entities.Door;
+import game.level.entities.Treasure;
 import game.player.Player;
 import game.tools.Pos;
 
@@ -17,6 +18,7 @@ public class Level {
 
     private Player p;
     private Door d;
+    private Treasure t;
     
     public Level() {}
 
@@ -28,6 +30,7 @@ public class Level {
         level = levelReader.readLevel();
         p = new Player(level);
         d = new Door(level);
+        t = new Treasure(level);
     }
 
     public void generateLevel() {

@@ -6,11 +6,10 @@ import game.level.Level;
 import java.util.List;
 
 public interface Entities {
-    Pos[] allEntities = null;
+    List<Pos> allEntities = null;
 
-    static Boolean isit(Pos p) {
-        return null;
-    }
+    Boolean isit(Pos p);
     static List<Pos> allPos (Level l) { return null; }
+    List<Pos> getAllPos();
 
 }
