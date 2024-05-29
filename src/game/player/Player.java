@@ -34,7 +34,6 @@ public class Player {
 
     public char[][] move(Pos move, char[][] level) {
         Pos newPos = Pos.add(p, move);
-        System.out.println(newPos);
         if (posAvailable(newPos, level)) {
             level[newPos.getX()][newPos.getY()] = 'J';
             level[p.getX()][p.getY()] = ' ';

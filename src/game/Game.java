@@ -30,6 +30,8 @@ public class Game {
 
     private Level l = new Level();
 
+    private int numberTreasureCollect = 0;
+
     private final Scanner scanUserInput;
 
     public Game(Scanner scanUserInput) {
@@ -77,6 +79,10 @@ public class Game {
         System.out.print("Press " + YES + " to say yes, " + NO + " to say no : ");
     }
 
+    public void printNumberTreasureCollect() {
+        System.out.println("You collected " + numberTreasureCollect + " treasure");
+    }
+
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -99,8 +105,10 @@ public class Game {
         while (result == PLAYING) {
             clearScreen();
             l.printLevel();
+            printNumberTreasureCollect();
             printKeys();
             result = l.move(scanUserInput);
+            if (l.getT().onTreasure(l.getP().getPos())) numberTreasureCollect++;
             l.setLevel(l.getT().randomNewTreasure(l.getLevel()));
         }
 
@@ -114,7 +122,7 @@ public class Game {
 
                 if (userInput == YES) launchStartingPage();
                 else if (userInput == NO) System.out.println("Goodbye !");
-                else System.out.println("Erreur votre réponse n'existe pas !");
+                else System.out.println("Error, this error doesnt mean anything");
 
                 break;
 
@@ -125,7 +133,8 @@ public class Game {
 
                 if (userInput == YES) launchStartingPage();
                 else if (userInput == NO) System.out.println("Well played and Goodbye !");
-                else System.out.println("Erreur votre réponse n'existe pas !");
+                else System.out.println("Error, this error doesnt mean anything");
+
                 break;
 
         }
