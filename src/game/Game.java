@@ -63,7 +63,12 @@ public class Game {
     }
 
     public void printKeys() {
-        System.out.println("Press " + UP + " to move up, " + DOWN + " to move down, " + LEFT + " to move left, " + RIGHT + " to move right");
+        System.out.println("Press " + UP + " to move up, " + DOWN + " to move down, " + LEFT + " to move left, " + RIGHT + " to move right, " + LEAVE + " to exit");
+    }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
     public void chooseLevel() {
@@ -87,6 +92,7 @@ public class Game {
         char inputLine;
 
         while (!(p.onExit())) {
+            clearScreen();
             l.printLevel();
             printKeys();
 
