@@ -46,6 +46,7 @@ public class Game {
         System.out.print("What do you want to do : ");
 
         int inputLine = scanUserInput.nextInt();
+        scanUserInput.nextLine();
 
         switch (inputLine) {
             case 1:
@@ -103,28 +104,27 @@ public class Game {
             l.setLevel(l.getT().randomNewTreasure(l.getLevel()));
         }
 
-        String userInput;
+        char userInput;
 
         switch (result) {
             case GAME_LEFT:
                 System.out.println("You left the game, do you want to play again ?");
                 printYesNo();
-                userInput = scanUserInput.nextLine();
-                if (!userInput.isEmpty()) {
-                    if (userInput.charAt(0) == YES) launchStartingPage();
-                    else if (userInput.charAt(0) == NO) System.out.println("Goodbye !");
-                    else System.out.println("Erreur votre réponse n'existe pas !");
-                }
+                userInput = scanUserInput.next().charAt(0);
+
+                if (userInput == YES) launchStartingPage();
+                else if (userInput == NO) System.out.println("Goodbye !");
+                else System.out.println("Erreur votre réponse n'existe pas !");
 
                 break;
 
             case WON:
                 System.out.println("You won game, do you want to play again ?");
                 printYesNo();
-                userInput = scanUserInput.nextLine();
+                userInput = scanUserInput.next().charAt(0);
 
-                if (userInput.charAt(0) == YES) launchStartingPage();
-                else if (userInput.charAt(0) == NO) System.out.println("Well played and Goodbye !");
+                if (userInput == YES) launchStartingPage();
+                else if (userInput == NO) System.out.println("Well played and Goodbye !");
                 else System.out.println("Erreur votre réponse n'existe pas !");
                 break;
 

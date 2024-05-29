@@ -30,11 +30,13 @@ public class LevelChooser {
             // let the user choose between levels
             System.out.print("Choose between one of those levels : ");
             int resultLevel = scanUserInput.nextInt();
+            scanUserInput.nextLine();
 
             //if the levels chose don't exist, let the user choose another time
             while(levelNames[resultLevel] == null || levelNames[resultLevel].isEmpty()) {
                 System.out.println("this level don't exist, choose another one");
                 resultLevel = scanUserInput.nextInt();
+                scanUserInput.nextLine();
             }
 
             //set the levelChoose instance
