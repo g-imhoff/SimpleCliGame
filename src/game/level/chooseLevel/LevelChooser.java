@@ -30,7 +30,7 @@ public class LevelChooser {
             // let the user choose between levels
             System.out.print("Choose between one of those levels : ");
             int resultLevel = scanUserInput.nextInt();
-            scanUserInput.nextLine();
+            scanUserInput.nextLine(); // to be sure that there is nothing less for future user input
 
             //if the levels chose don't exist, let the user choose another time
             while(levelNames[resultLevel] == null || levelNames[resultLevel].isEmpty()) {
@@ -72,10 +72,10 @@ public class LevelChooser {
                 levelNames[i] = fichiers[i].getName();
             }
 
-            return 1;
+            return 1; //this return tell us that we found some level
         }
 
-        return 0;
+        return 0; //this tell us that the folder where we searched level contains absolutly no level
     }
 
     public void levelPathModifier(Scanner scanUserInput) {

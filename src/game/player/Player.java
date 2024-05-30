@@ -4,6 +4,8 @@ import game.level.entities.Door;
 import game.tools.Pos;
 import game.level.Level;
 
+import java.util.List;
+
 import static game.Game.PLAYER;
 import static game.Game.WALL;
 
@@ -53,5 +55,13 @@ public class Player {
 
     public Boolean onExit() {
         return false;
+    }
+
+    public Boolean onPlayer(List<Pos> allEntities) {
+            for (Pos Entity : allEntities) {
+                if (Entity.equals(p)) return true;
+            }
+
+            return false;
     }
 }

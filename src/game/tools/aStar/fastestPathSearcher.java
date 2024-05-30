@@ -87,7 +87,7 @@ public class fastestPathSearcher {
         ArrayList<Pos> path = getPath();
 
         if (path.size() == 0) {
-            return NOMOVE;
+            return KILLED;
         }
 
         return posToMove(startPos, path.get(path.size() - 1));
@@ -149,7 +149,7 @@ public class fastestPathSearcher {
             if (yDest != 0) {
                 return yDest == -1 ? RIGHT : LEFT;
             } else {
-                return NOMOVE;
+                return KILLED;
             }
         }
     }

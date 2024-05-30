@@ -9,8 +9,9 @@ public class LevelReader extends LevelChooser {
     private int rows, columns;
 
     public LevelReader(String levelPath) {
-        this.levelPath = levelPath;
+        this.levelPath = levelPath; //set the levelPath
 
+        //read the file, to set the rows and the columns
         try (BufferedReader reader = new BufferedReader(new FileReader(levelPath))) {
             String line = reader.readLine();
             if (line != null) {
@@ -28,22 +29,25 @@ public class LevelReader extends LevelChooser {
     }
 
     public char[][] readLevel() {
-        char[][] level = new char[rows][columns];
+        char[][] level = new char[rows][columns]; // create a char[][] with the right size
 
+        //read the file (location : levelPath)
         try (BufferedReader reader = new BufferedReader(new FileReader(levelPath))) {
             String line;
             int row = 0;
 
+            // read each line in the file
             while ((line = reader.readLine()) != null) {
+                // handle the line with one char at the time
                 for (int col = 0; col < line.length(); col++) {
-                    level[row][col] = line.charAt(col);
+                    level[row][col] = line.charAt(col); // put the char into the char[][] array
                 }
                 row++;
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // if there is an error, print the error
         }
 
-        return level;
+        return level; // return the level
     }
 }

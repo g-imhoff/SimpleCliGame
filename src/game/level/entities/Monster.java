@@ -1,6 +1,7 @@
 package game.level.entities;
 
 import game.level.Level;
+import game.player.Player;
 import game.tools.Pos;
 import game.tools.aStar.AStarAlgo;
 
@@ -9,11 +10,11 @@ import java.util.List;
 import java.util.Random;
 
 import static game.Game.MONSTER;
-
 import static game.Game.UP;
 import static game.Game.DOWN;
 import static game.Game.LEFT;
 import static game.Game.RIGHT;
+import static game.Game.KILLED;
 
 public class Monster implements Entities {
     List<Pos> allEntities = new ArrayList<Pos>();
@@ -57,6 +58,7 @@ public class Monster implements Entities {
     }
 
     public char[][] randomMonsterMove(char[][] level, Pos playerPos) {
+        if (allEntities.size() == 0) return level;
         for (Pos monsterPos : allEntities) {
             Random rand = new Random();
 
@@ -64,7 +66,6 @@ public class Monster implements Entities {
 
             if (rand_int > 20) {
                 AStarAlgo algo = new AStarAlgo(monsterPos, playerPos, level);
-                algo.printAllCost();
                 char keyToDoResult = algo.search();
 
                 Pos newPos;
@@ -101,6 +102,16 @@ public class Monster implements Entities {
                         level[monsterPos.getX()][monsterPos.getY()] = MONSTER;
 
                         break;
+
+                    case KILLED:
+                        Pos player = Player.whereIsPlayer(level);
+                        level[monsterPos.getX()][monsterPos.getY()] = ' ';
+                        monsterPos.setX(player.getX());
+                        monsterPos.setY(player.getY());
+                        level[player.getX()][player.getY()] = MONSTER;
+
+                        break;
+
                 }
             }
         }
@@ -108,5 +119,17 @@ public class Monster implements Entities {
         return level;
     }
 
+    public Boolean onMonster(Pos playerPos) {
+        int index = 0;
+        for (Pos Entity : allEntities) {
+            if (Entity.getX() == playerPos.getX() && Entity.getY() == playerPos.getY()) {
+                allEntities.remove(index);
+                return true;
+            }
 
+            index++;
+        }
+
+        return false;
+    }
 }

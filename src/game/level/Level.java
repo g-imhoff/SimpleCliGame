@@ -87,7 +87,7 @@ public class Level {
 
             case LEAVE:
                 //means that we did'nt finish the game, but just left the game
-                return LEAVE;
+                return GAME_LEFT;
 
         }
 

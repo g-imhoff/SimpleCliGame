@@ -117,4 +117,14 @@ public class Treasure implements Entities {
 
         return false;
     }
+
+    public char[][] printBack(char[][] level) {
+        for (Pos Entity : allEntities) {
+            if (level[Entity.getX()][Entity.getY()] == ' ') {
+                level[Entity.getX()][Entity.getY()] = 'T';
+            }
+        }
+
+        return level;
+    }
 }

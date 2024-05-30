@@ -21,11 +21,13 @@ public class Game {
     public static final char LEFT = 'q';
     public static final char RIGHT = 'd';
     public static final char NOMOVE = 'n';
+    public static final char KILLED = 'k';
     public static final char LEAVE = 'e';
 
     public static final int WON = 1;
     public static final int PLAYING = 0;
     public static final int GAME_LEFT = -1;
+    public static final int LOST = -2;
 
     public static final char YES = 'y';
     public static final char NO = 'n';
@@ -38,6 +40,7 @@ public class Game {
     private Level l = new Level();
 
     private int numberTreasureCollect = 0;
+    private int numberMonsterKilled = 0;
 
     private final Scanner scanUserInput;
 
@@ -87,7 +90,7 @@ public class Game {
     }
 
     public void printNumberTreasureCollect() {
-        System.out.println("You collected " + numberTreasureCollect + " treasure");
+        System.out.println("You collected " + numberTreasureCollect + " treasure and killed " + numberMonsterKilled + " monster");
     }
 
     public static void clearScreen() {
@@ -116,8 +119,17 @@ public class Game {
             printKeys();
             result = l.move(scanUserInput);
             if (l.getT().onTreasure(l.getP().getPos())) numberTreasureCollect++;
+            if (l.getM().onMonster(l.getP().getPos())) numberMonsterKilled++;
             l.setLevel(l.getT().randomNewTreasure(l.getLevel()));
             l.setLevel(l.getM().randomMonsterMove(l.getLevel(), l.getP().getPos()));
+            l.setLevel(l.getT().printBack(l.getLevel()));
+            if (l.getP().onPlayer(l.getM().getAllPos())) {
+                result = LOST;
+                clearScreen();
+                System.out.print("\u001B[31m");
+                l.printLevel();
+                System.out.print("\u001B[37m");
+            }
         }
 
         char userInput;
@@ -136,7 +148,7 @@ public class Game {
                     return GAME_OVER;
                 }
                 else  {
-                    System.out.println("Error, this error doesnt mean anything");
+                    System.out.println("Error, this key doesnt mean anything");
                     return GAME_INPUT_USER_ERROR;
                 }
 
@@ -153,7 +165,24 @@ public class Game {
                     return GAME_OVER;
                 }
                 else {
-                    System.out.println("Error, this error doesnt mean anything");
+                    System.out.println("Error, this key doesnt mean anything");
+                    return GAME_INPUT_USER_ERROR;
+                }
+
+            case LOST :
+                System.out.println("You lost your game, do you want to play again ?");
+                printYesNo();
+                userInput = scanUserInput.next().charAt(0);
+
+                if (userInput == YES) {
+                    return GAME_RESTART;
+                }
+                else if (userInput == NO) {
+                    System.out.println("Try another time !");
+                    return GAME_OVER;
+                }
+                else {
+                    System.out.println("Error, this key doesnt mean anything");
                     return GAME_INPUT_USER_ERROR;
                 }
 
