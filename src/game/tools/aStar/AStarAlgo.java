@@ -39,7 +39,7 @@ public class AStarAlgo {
 
         for (int i = 0; i < level.length; i++) {
             for (int j = 0; j < level[i].length; j++) {
-                if (level[i][j] == ' ' || level[i][j] == DOOR || level[i][j] == TREASURE) {
+                if (level[i][j] == ' ' || level[i][j] == DOOR || level[i][j] == TREASURE || level[i][j] == PLAYER) {
                     result[i][j] = initCost(new Pos(i, j));
                 }
             }
