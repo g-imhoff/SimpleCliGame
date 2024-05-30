@@ -14,6 +14,7 @@ public class Game {
     public static final char TREASURE = 'T';
     public static final char EXIT = 'S';
     public static final char DOOR = 'P';
+    public static final char MONSTER = 'M';
 
     public static final char UP = 'z';
     public static final char DOWN = 's';

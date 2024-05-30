@@ -4,6 +4,9 @@ import game.level.entities.Door;
 import game.tools.Pos;
 import game.level.Level;
 
+import static game.Game.PLAYER;
+import static game.Game.WALL;
+
 public class Player {
     Pos p;
 
@@ -23,8 +26,9 @@ public class Player {
         Pos p = null;
         for (int i = 0; i < level.length; i++) {
             for (int j = 0; j < level[i].length; j++) {
-                if (level[i][j] == 'J') {
+                if (level[i][j] == PLAYER) {
                     p = new Pos(i, j);
+                    return p;
                 }
             }
         }
@@ -35,7 +39,7 @@ public class Player {
     public char[][] move(Pos move, char[][] level) {
         Pos newPos = Pos.add(p, move);
         if (posAvailable(newPos, level)) {
-            level[newPos.getX()][newPos.getY()] = 'J';
+            level[newPos.getX()][newPos.getY()] = PLAYER;
             level[p.getX()][p.getY()] = ' ';
             p = newPos;
         }
@@ -44,7 +48,7 @@ public class Player {
     }
 
     public Boolean posAvailable(Pos p, char[][] level) {
-        return level[p.getX()][p.getY()] != '#';
+        return level[p.getX()][p.getY()] != WALL;
     }
 
     public Boolean onExit() {
