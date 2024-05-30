@@ -28,6 +28,11 @@ public class Game {
     public static final char YES = 'y';
     public static final char NO = 'n';
 
+    public static final int GAME_RESTART = 0;
+    public static final int GAME_OVER = 1;
+    public static final int GAME_END_ERROR = 2;
+    public static final int GAME_INPUT_USER_ERROR = 3;
+
     private Level l = new Level();
 
     private int numberTreasureCollect = 0;
@@ -100,7 +105,7 @@ public class Game {
         System.exit(0);
     }
 
-    public void play() {
+    public int play() {
         int result = PLAYING;
         while (result == PLAYING) {
             clearScreen();
@@ -120,22 +125,37 @@ public class Game {
                 printYesNo();
                 userInput = scanUserInput.next().charAt(0);
 
-                if (userInput == YES) launchStartingPage();
-                else if (userInput == NO) System.out.println("Goodbye !");
-                else System.out.println("Error, this error doesnt mean anything");
-
-                break;
+                if (userInput == YES) {
+                    return GAME_RESTART;
+                }
+                else if (userInput == NO){
+                    System.out.println("Goodbye !");
+                    return GAME_OVER;
+                }
+                else  {
+                    System.out.println("Error, this error doesnt mean anything");
+                    return GAME_INPUT_USER_ERROR;
+                }
 
             case WON:
                 System.out.println("You won game, do you want to play again ?");
                 printYesNo();
                 userInput = scanUserInput.next().charAt(0);
 
-                if (userInput == YES) launchStartingPage();
-                else if (userInput == NO) System.out.println("Well played and Goodbye !");
-                else System.out.println("Error, this error doesnt mean anything");
+                if (userInput == YES) {
+                    return GAME_RESTART;
+                }
+                else if (userInput == NO) {
+                    System.out.println("Well played and Goodbye !");
+                    return GAME_OVER;
+                }
+                else {
+                    System.out.println("Error, this error doesnt mean anything");
+                    return GAME_INPUT_USER_ERROR;
+                }
 
-                break;
+            default :
+                return GAME_END_ERROR;
 
         }
     }

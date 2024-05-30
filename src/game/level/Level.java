@@ -3,6 +3,7 @@ package game.level;
 import game.level.chooseLevel.LevelChooser;
 import game.level.chooseLevel.LevelReader;
 import game.level.entities.Door;
+import game.level.entities.Exit;
 import game.level.entities.Treasure;
 import game.player.Player;
 import game.tools.Pos;
@@ -19,6 +20,7 @@ public class Level {
     private Player p;
     private Door d;
     private Treasure t;
+    private Exit e;
     
     public Level() {}
 
@@ -31,6 +33,7 @@ public class Level {
         p = new Player(level);
         d = new Door(level);
         t = new Treasure(level);
+        e = new Exit(level);
     }
 
     public void generateLevel() {
@@ -79,7 +82,7 @@ public class Level {
 
             case LEAVE:
                 //means that we did'nt finish the game, but just left the game
-                return -1;
+                return LEAVE;
 
         }
 
@@ -91,7 +94,9 @@ public class Level {
             }
         });
 
-        return 0;
+        if (e.onExit(p.getPos())) return WON;
+
+        return PLAYING;
     }
 
     public Player getP() {

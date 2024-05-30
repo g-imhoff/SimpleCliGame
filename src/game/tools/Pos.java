@@ -31,4 +31,8 @@ public class Pos {
     public static Pos add(Pos p1, Pos p2) {
         return new Pos(p1.getX() + p2.getX(), p1.getY() + p2.getY());
     }
+
+    public Boolean equals (Pos p) {
+        return this.x == p.getX() && this.y == p.getY();
+    }
 }

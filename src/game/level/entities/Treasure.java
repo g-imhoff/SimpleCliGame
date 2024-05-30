@@ -25,7 +25,11 @@ public class Treasure implements Entities {
     }
 
     public Boolean isit(Pos p) {
-        return allEntities.contains(p);
+        for (Pos Entity : allEntities) {
+            if (Entity.equals(p)) return true;
+        }
+
+        return false;
     }
 
     static List<Pos> allPos (Level l) {
