@@ -14,6 +14,5 @@ public class Main {
             g.launchStartingPage();
             result = g.play();
         }
-
     }
 }

@@ -22,6 +22,6 @@ public class Cost {
     }
 
     public String toString() {
-        return "(h:" + hCost + ")";
+        return "(f:" + fCost + ")";
     }
 }
