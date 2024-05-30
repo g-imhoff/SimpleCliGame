@@ -4,11 +4,11 @@ import game.level.chooseLevel.LevelChooser;
 import game.level.chooseLevel.LevelReader;
 import game.level.entities.Door;
 import game.level.entities.Exit;
+import game.level.entities.Monster;
 import game.level.entities.Treasure;
 import game.player.Player;
 import game.tools.Pos;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,6 +21,7 @@ public class Level {
     private Door d;
     private Treasure t;
     private Exit e;
+    private Monster m;
 
     public Pos startPos;
 
@@ -37,6 +38,7 @@ public class Level {
         d = new Door(level);
         t = new Treasure(level);
         e = new Exit(level);
+        m = new Monster(level);
     }
 
     public void generateLevel() {
