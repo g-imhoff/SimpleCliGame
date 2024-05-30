@@ -21,7 +21,9 @@ public class Level {
     private Door d;
     private Treasure t;
     private Exit e;
-    
+
+    public Pos startPos;
+
     public Level() {}
 
     public void chooseLevel(Scanner scanUserInput) {
@@ -31,6 +33,7 @@ public class Level {
         LevelReader levelReader = new LevelReader(levelPath);
         level = levelReader.readLevel();
         p = new Player(level);
+        startPos = p.getPos();
         d = new Door(level);
         t = new Treasure(level);
         e = new Exit(level);
