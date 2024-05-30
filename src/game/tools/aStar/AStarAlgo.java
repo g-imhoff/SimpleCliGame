@@ -2,28 +2,31 @@ package game.tools.aStar;
 
 import game.tools.Pos;
 
-import static game.Game.DOOR;
-import static game.Game.WALL;
+import java.util.Random;
+
+import static game.Game.*;
 
 
 public class AStarAlgo {
     private Pos startPos;
     private Pos goalPos;
     private Cost[][] levelCost;
+    private fastestPathSearcher searcher;
 
     public AStarAlgo(Pos startPos, Pos goalPos, char[][] level) {
         this.startPos = startPos;
         this.goalPos = goalPos;
         this.levelCost = initAllCost(level);
+        this.searcher = new fastestPathSearcher(levelCost, level);
     }
 
     public Cost initCost(Pos current) {
-        int xDistance = (int) (Math.pow((double) current.getX(), 2.0) - Math.pow((double) startPos.getX(), 2.0));
-        int yDistance = (int) (Math.pow((double) current.getY(), 2.0) - Math.pow((double) startPos.getY(), 2.0));
+        int xDistance = Math.abs(current.getX() - startPos.getX());
+        int yDistance = Math.abs(current.getY()- startPos.getY());
         int gCost = xDistance + yDistance;
 
-        xDistance = (int) (Math.pow((double) current.getX(), 2.0) - Math.pow((double) goalPos.getX(), 2.0));
-        yDistance = (int) (Math.pow((double) current.getY(), 2.0) - Math.pow((double) goalPos.getY(), 2.0));
+        xDistance = Math.abs(current.getX() - goalPos.getX());
+        yDistance = Math.abs(current.getX() - goalPos.getX());
         int hCost = xDistance + yDistance;
 
         int fCost = gCost + hCost;
@@ -36,7 +39,7 @@ public class AStarAlgo {
 
         for (int i = 0; i < level.length; i++) {
             for (int j = 0; j < level[i].length; j++) {
-                if (level[i][j] == ' ' || level[i][j] == DOOR) {
+                if (level[i][j] == ' ' || level[i][j] == DOOR || level[i][j] == TREASURE) {
                     result[i][j] = initCost(new Pos(i, j));
                 }
             }
@@ -48,7 +51,7 @@ public class AStarAlgo {
     public void printAllCost() {
         for (int i = 0; i < levelCost.length; i++) {
             for (int j = 0; j < levelCost[i].length; j++) {
-                if (levelCost[i][j] == null) System.out.print(WALL);
+                if (levelCost[i][j] == null) System.out.print("  " + WALL + "  ");
                 else System.out.print(levelCost[i][j]);
             }
             System.out.println();
@@ -57,5 +60,9 @@ public class AStarAlgo {
 
     public Cost[][] getLevelCost() {
         return levelCost;
+    }
+
+    public char search () {
+        return searcher.search(startPos, goalPos);
     }
 }

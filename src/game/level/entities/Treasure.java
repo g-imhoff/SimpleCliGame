@@ -54,7 +54,7 @@ public class Treasure implements Entities {
     public char[][] randomNewTreasure(char[][] level) {
         Random rand = new Random();
 
-        int rand_int = rand.nextInt(100);
+        int rand_int = rand.nextInt(101);
 
         if (rand_int > 90) {
             int emptySpace = howManyEmpty(level);

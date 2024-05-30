@@ -6,8 +6,14 @@ import game.tools.aStar.AStarAlgo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static game.Game.MONSTER;
+
+import static game.Game.UP;
+import static game.Game.DOWN;
+import static game.Game.LEFT;
+import static game.Game.RIGHT;
 
 public class Monster implements Entities {
     List<Pos> allEntities = new ArrayList<Pos>();
@@ -52,8 +58,51 @@ public class Monster implements Entities {
 
     public char[][] randomMonsterMove(char[][] level, Pos playerPos) {
         for (Pos monsterPos : allEntities) {
-            AStarAlgo algo = new AStarAlgo(monsterPos, playerPos, level);
-            algo.printAllCost();
+            Random rand = new Random();
+
+            int rand_int = rand.nextInt(101);
+
+            if (rand_int > 20) {
+                AStarAlgo algo = new AStarAlgo(monsterPos, playerPos, level);
+                algo.printAllCost();
+                char keyToDoResult = algo.search();
+
+                Pos newPos;
+
+                switch (keyToDoResult) {
+                    case UP:
+                        level[monsterPos.getX()][monsterPos.getY()] = ' ';
+                        monsterPos.setX(monsterPos.getX() - 1);
+                        monsterPos.setY(monsterPos.getY());
+                        level[monsterPos.getX()][monsterPos.getY()] = MONSTER;
+
+                        break;
+
+                    case DOWN:
+                        level[monsterPos.getX()][monsterPos.getY()] = ' ';
+                        monsterPos.setX(monsterPos.getX() + 1);
+                        monsterPos.setY(monsterPos.getY());
+                        level[monsterPos.getX()][monsterPos.getY()] = MONSTER;
+
+                        break;
+
+                    case LEFT:
+                        level[monsterPos.getX()][monsterPos.getY()] = ' ';
+                        monsterPos.setX(monsterPos.getX());
+                        monsterPos.setY(monsterPos.getY() - 1);
+                        level[monsterPos.getX()][monsterPos.getY()] = MONSTER;
+
+                        break;
+
+                    case RIGHT:
+                        level[monsterPos.getX()][monsterPos.getY()] = ' ';
+                        monsterPos.setX(monsterPos.getX());
+                        monsterPos.setY(monsterPos.getY() + 1);
+                        level[monsterPos.getX()][monsterPos.getY()] = MONSTER;
+
+                        break;
+                }
+            }
         }
 
         return level;

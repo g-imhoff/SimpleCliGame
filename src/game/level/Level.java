@@ -58,7 +58,7 @@ public class Level {
     public void printLevel() {
         for (int i = 0; i < level.length; i++) {
             for (int j = 0; j < level[i].length; j++) {
-                System.out.print(level[i][j]);
+                System.out.print("  " + level[i][j] + "  ");
             }
             System.out.print("\n");
         }
