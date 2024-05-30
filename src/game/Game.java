@@ -20,6 +20,7 @@ public class Game {
     public static final char DOWN = 's';
     public static final char LEFT = 'q';
     public static final char RIGHT = 'd';
+    public static final char NOMOVE = 'n';
     public static final char LEAVE = 'e';
 
     public static final int WON = 1;

@@ -6,10 +6,7 @@ import game.tools.CouplePos;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import static game.Game.UP;
-import static game.Game.DOWN;
-import static game.Game.LEFT;
-import static game.Game.RIGHT;
+import static game.Game.*;
 
 public class fastestPathSearcher {
     private Cost[][] levelCost;
@@ -27,8 +24,10 @@ public class fastestPathSearcher {
         this.level = level;
     }
 
-    public char search(Pos startPos, Pos goalPos) {
+    public char search(Pos startPos, Pos destPos) {
+        this.startPos = startPos;
         currentPos = startPos;
+        this.destPos = destPos;
 
         while (destReached == false) {
             int x = currentPos.getX();
@@ -48,16 +47,14 @@ public class fastestPathSearcher {
             }
 
             if (levelCost[x - 1][y] != null) {
-                Pos up = new Pos(x, y - 1);
+                Pos up = new Pos( x - 1, y);
                 openPos(up);
             }
 
             if (levelCost[x + 1][y] != null) {
-                Pos down = new Pos(x, y + 1);
+                Pos down = new Pos(x + 1, y);
                 openPos(down);
             }
-
-            System.out.println(posOpened);
 
             int bestNodeIndex = 0;
             int bestNodeFCost = Integer.MAX_VALUE;
@@ -85,15 +82,15 @@ public class fastestPathSearcher {
             if (currentPos.equals(destPos)) {
                 destReached = true;
             }
-
-            System.out.println("boucle");
         }
 
         ArrayList<Pos> path = getPath();
 
-        System.out.println("voici le chemin vers le joueur\n" + path);
+        if (path.size() == 0) {
+            return NOMOVE;
+        }
 
-        return RIGHT;
+        return posToMove(startPos, path.get(path.size() - 1));
     }
 
     public ArrayList<Pos> getPath() {
@@ -102,6 +99,7 @@ public class fastestPathSearcher {
 
         while (!current.equals(startPos)) {
             Pos parent = findParentPos(current);
+            current = parent;
 
             if (parent != null) {
                 if (!parent.equals(startPos)) {
@@ -117,16 +115,42 @@ public class fastestPathSearcher {
 
     public Pos findParentPos(Pos pos) {
         for (CouplePos c : parentPos) {
-            if (c.getPos() == pos) return c.getParentPos();
+            if (c.getPos().equals(pos)) return c.getParentPos();
         }
 
         return null;
     }
 
     public void openPos(Pos p) {
-        if (!posOpened.contains(p) && !posChecked.contains(p)) {
+        Boolean checkCondition = true;
+
+        for (Pos openedPos : posOpened) {
+            if (p.equals(openedPos)) checkCondition = false;
+        }
+
+        for (Pos checkedPos : posChecked) {
+            if (p.equals(checkedPos)) checkCondition = false;
+        }
+
+        if (checkCondition) {
             parentPos.add(new CouplePos(p, currentPos));
             posOpened.add(p);
+        }
+    }
+
+    public char posToMove(Pos myPos, Pos toGo) {
+        int xDest = myPos.getX() - toGo.getX();
+
+        if (xDest != 0) {
+            return xDest == -1 ? DOWN : UP;
+        } else {
+            int yDest = myPos.getY() - toGo.getY();
+
+            if (yDest != 0) {
+                return yDest == -1 ? RIGHT : LEFT;
+            } else {
+                return NOMOVE;
+            }
         }
     }
 }
