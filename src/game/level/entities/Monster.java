@@ -2,6 +2,7 @@ package game.level.entities;
 
 import game.level.Level;
 import game.tools.Pos;
+import game.tools.aStar.AStarAlgo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 import static game.Game.MONSTER;
 
 public class Monster implements Entities {
-    List<Pos> allEntities = null;
+    List<Pos> allEntities = new ArrayList<Pos>();
 
     public Monster(char[][] level) {
         for (int i = 0; i < level.length; i++) {
@@ -47,6 +48,15 @@ public class Monster implements Entities {
 
     public List<Pos> getAllPos() {
         return allEntities;
+    }
+
+    public char[][] randomMonsterMove(char[][] level, Pos playerPos) {
+        for (Pos monsterPos : allEntities) {
+            AStarAlgo algo = new AStarAlgo(monsterPos, playerPos, level);
+            algo.printAllCost();
+        }
+
+        return level;
     }
 
 

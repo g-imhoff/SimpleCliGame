@@ -23,7 +23,7 @@ public class Level {
     private Exit e;
     private Monster m;
 
-    public Pos startPos;
+    private Pos startPos;
 
     public Level() {}
 
@@ -114,5 +114,13 @@ public class Level {
 
     public Treasure getT() {
         return t;
+    }
+
+    public Monster getM() {
+        return m;
+    }
+
+    public Pos getStartPos() {
+        return startPos;
     }
 }

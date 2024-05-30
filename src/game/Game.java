@@ -116,6 +116,7 @@ public class Game {
             result = l.move(scanUserInput);
             if (l.getT().onTreasure(l.getP().getPos())) numberTreasureCollect++;
             l.setLevel(l.getT().randomNewTreasure(l.getLevel()));
+            l.getM().randomMonsterMove(l.getLevel(), l.getP().getPos());
         }
 
         char userInput;

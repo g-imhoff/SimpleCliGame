@@ -20,4 +20,8 @@ public class Cost {
     public int getHCost() {
         return hCost;
     }
+
+    public String toString() {
+        return "(h:" + hCost + ")";
+    }
 }

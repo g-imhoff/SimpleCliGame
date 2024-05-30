@@ -2,6 +2,10 @@ package game.tools.aStar;
 
 import game.tools.Pos;
 
+import static game.Game.DOOR;
+import static game.Game.WALL;
+
+
 public class AStarAlgo {
     private Pos startPos;
     private Pos goalPos;
@@ -14,12 +18,12 @@ public class AStarAlgo {
     }
 
     public Cost initCost(Pos current) {
-        int xDistance = current.getX() - startPos.getX();
-        int yDistance = current.getY() - startPos.getY();
+        int xDistance = (int) (Math.pow((double) current.getX(), 2.0) - Math.pow((double) startPos.getX(), 2.0));
+        int yDistance = (int) (Math.pow((double) current.getY(), 2.0) - Math.pow((double) startPos.getY(), 2.0));
         int gCost = xDistance + yDistance;
 
-        xDistance = current.getX() - goalPos.getX();
-        yDistance = current.getY() - goalPos.getY();
+        xDistance = (int) (Math.pow((double) current.getX(), 2.0) - Math.pow((double) goalPos.getX(), 2.0));
+        yDistance = (int) (Math.pow((double) current.getY(), 2.0) - Math.pow((double) goalPos.getY(), 2.0));
         int hCost = xDistance + yDistance;
 
         int fCost = gCost + hCost;
@@ -32,7 +36,7 @@ public class AStarAlgo {
 
         for (int i = 0; i < level.length; i++) {
             for (int j = 0; j < level[i].length; j++) {
-                if (level[i][j] == ' ') {
+                if (level[i][j] == ' ' || level[i][j] == DOOR) {
                     result[i][j] = initCost(new Pos(i, j));
                 }
             }
@@ -44,9 +48,14 @@ public class AStarAlgo {
     public void printAllCost() {
         for (int i = 0; i < levelCost.length; i++) {
             for (int j = 0; j < levelCost[i].length; j++) {
-                System.out.print(levelCost[i][j] + " ");
+                if (levelCost[i][j] == null) System.out.print(WALL);
+                else System.out.print(levelCost[i][j]);
             }
             System.out.println();
         }
+    }
+
+    public Cost[][] getLevelCost() {
+        return levelCost;
     }
 }
