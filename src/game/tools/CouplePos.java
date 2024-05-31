@@ -2,7 +2,7 @@ package game.tools;
 
 /**
  * CouplePos
- * 
+ * <p>
  * This class is used to manage a couple of positions, in our case a position and its parent position.
  */
 public class CouplePos {
@@ -15,8 +15,8 @@ public class CouplePos {
 
     /**
      * Constructor
-     * 
-     * @param pos the position
+     *
+     * @param pos       the position
      * @param parentPos the parent position
      */
     public CouplePos(Pos pos, Pos parentPos) {
@@ -26,6 +26,7 @@ public class CouplePos {
 
     /**
      * This method returns the position.
+     *
      * @return the position
      */
     public Pos getPos() {
@@ -34,6 +35,7 @@ public class CouplePos {
 
     /**
      * This method returns the parent position.
+     *
      * @return the parent position
      */
     public Pos getParentPos() {

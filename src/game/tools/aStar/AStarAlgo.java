@@ -2,27 +2,24 @@ package game.tools.aStar;
 
 import game.tools.Pos;
 
-import java.util.Random;
-
 import static game.Game.*;
 
 /**
  * AStarAlgo
- * 
+ * <p>
  * This class is used to manage the A* algorithm, this class will only search all the costs (f, g, h) of all the positions and use
  * the fastestPathSearcher class to find the shortest path between two points.
- *
+ * <p>
  * The A* algorithm is used to find the shortest path between two points.
  */
 
 public class AStarAlgo {
     /**
-     * 
      * startPos, the start position
      * goalPos, the goal position
      * levelCost, the cost (f, g, h) of all the positions
      * searcher, the fastest path searcher (used to find the shortest path between two points)
-    */
+     */
     private Pos startPos;
     private Pos goalPos;
     private Cost[][] levelCost;
@@ -30,10 +27,10 @@ public class AStarAlgo {
 
     /**
      * Constructor
-     * 
+     *
      * @param startPos the start position
-     * @param goalPos the goal position
-     * @param level the level array
+     * @param goalPos  the goal position
+     * @param level    the level array
      */
     public AStarAlgo(Pos startPos, Pos goalPos, char[][] level) {
         this.startPos = startPos;
@@ -44,14 +41,14 @@ public class AStarAlgo {
 
     /**
      * This method initializes the cost of a position.
-     * 
+     *
      * @param current the position to initialize
      * @return the cost of the position
      */
     public Cost initCost(Pos current) {
         // create the g cost
         int xDistance = Math.abs(current.getX() - startPos.getX());
-        int yDistance = Math.abs(current.getY()- startPos.getY());
+        int yDistance = Math.abs(current.getY() - startPos.getY());
         int gCost = xDistance + yDistance;
 
         // create the h cost
@@ -68,11 +65,11 @@ public class AStarAlgo {
 
     /**
      * This method initializes the cost of all the positions.
-     * 
+     *
      * @param level the level array
      * @return the cost of all the positions
      */
-    public Cost[][] initAllCost (char[][] level) {
+    public Cost[][] initAllCost(char[][] level) {
         // create the result array with the right dimensions
         Cost[][] result = new Cost[level.length][level[0].length];
 
@@ -91,7 +88,7 @@ public class AStarAlgo {
 
     /**
      * This method prints all the costs.
-     * 
+     * <p>
      * only use for debug purpose
      */
     public void printAllCost() {
@@ -100,7 +97,7 @@ public class AStarAlgo {
             for (int j = 0; j < levelCost[i].length; j++) {
                 // if the cost is == null, print a wall (it means that there was no reason to calculate the cost of this position)
                 if (levelCost[i][j] == null) System.out.print("  " + WALL + "  ");
-                // else print the cost
+                    // else print the cost
                 else System.out.print(levelCost[i][j]);
             }
             System.out.println();
@@ -109,7 +106,7 @@ public class AStarAlgo {
 
     /**
      * This method returns the level cost.
-     * 
+     *
      * @return the level cost
      */
     public Cost[][] getLevelCost() {
@@ -118,10 +115,10 @@ public class AStarAlgo {
 
     /**
      * This method returns the start position.
-     * 
+     *
      * @return the start position
      */
-    public char search () {
+    public char search() {
         return searcher.search(startPos, goalPos); // return the result of the search
     }
 }

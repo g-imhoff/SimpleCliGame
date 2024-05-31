@@ -8,13 +8,12 @@ import static game.Game.MAX_LEVELS;
 
 /**
  * LevelChooser
- * 
+ * <p>
  * This class is used to choose a level in the level folder.
  * It will print all the levels in the folder and let the user choose one.
  * If the folder is empty, it will ask the user to change the path of the level folder.
- * 
+ * <p>
  * The level folder is set by default at "./level".
- * 
  */
 
 public class LevelChooser {
@@ -26,13 +25,14 @@ public class LevelChooser {
     /**
      * Constructor
      */
-    public LevelChooser() {}
-    
+    public LevelChooser() {
+    }
+
     /**
      * This method allows the user to choose a level from the available levels.
      * It first prints all available levels. If the list of levels is empty or cannot be retrieved,
      * it prompts the user to change the level folder path and restarts the level selection process.
-     * 
+     *
      * @param scanUserInput the Scanner object used to read user input from the console.
      */
 
@@ -54,7 +54,7 @@ public class LevelChooser {
             scanUserInput.nextLine(); // to be sure that there is nothing less for future user input
 
             //if the levels chose don't exist, let the user choose another time
-            while(levelNames[resultLevel] == null || levelNames[resultLevel].isEmpty()) {
+            while (levelNames[resultLevel] == null || levelNames[resultLevel].isEmpty()) {
                 System.out.println("this level don't exist, choose another one");
                 resultLevel = scanUserInput.nextInt();
                 scanUserInput.nextLine();
@@ -75,7 +75,7 @@ public class LevelChooser {
     /**
      * This method retrieves all the levels in the level folder.
      * It filters the files in the folder to only include .txt files.
-     * 
+     *
      * @return 1 if levels are found, 0 otherwise.
      */
 
@@ -107,7 +107,7 @@ public class LevelChooser {
 
     /**
      * This method allows the user to change the path of the level folder.
-     * 
+     *
      * @param scanUserInput the Scanner object used to read user input from the console.
      */
 
@@ -120,7 +120,7 @@ public class LevelChooser {
 
     /**
      * This method returns the final path to the level we want to play.
-     * 
+     *
      * @return the final path to the level we want to play.
      */
 

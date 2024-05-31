@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 /**
  * Game
- * 
+ * <p>
  * This class is used to manage the game.
  */
 public class Game {
@@ -18,7 +18,7 @@ public class Game {
      * EXIT, the exit character
      * DOOR, the door character
      * MONSTER, the monster character
-     * 
+     * <p>
      * UP, the up key
      * DOWN, the down key
      * LEFT, the left key
@@ -26,32 +26,31 @@ public class Game {
      * NOMOVE, used to say that you don't move
      * KILLED, used to say that you got killed
      * LEAVE, used to say that you left the game
-     * 
+     * <p>
      * WON, used to say that you won the game
      * PLAYING, used to say that you are playing
      * GAME_LEFT, used to say that you left the game
      * LOST, used to say that you lost the game
-     * 
+     * <p>
      * YES, the yes key
      * NO, the no key
-     * 
+     * <p>
      * GAME_RESTART, used to say that you want to restart the game
      * GAME_OVER, used to say that the game is over
      * GAME_END_ERROR, used to say that the game ended with an error
      * GAME_INPUT_USER_ERROR, used to say that the user input create an error
-     * 
+     * <p>
      * MIN_ROWS_SIZE, the minimum number of rows
      * MIN_COLS_SIZE, the minimum number of columns
      * MAX_ROWS_SIZE, the maximum number of rows
      * MAX_COLS_SIZE, the maximum number of columns
-     * 
+     * <p>
      * l, the level
-     * 
+     * <p>
      * numberTreasureCollect, the number of treasure collected
      * numberMonsterKilled, the number of monster killed
-     * 
+     * <p>
      * scanUserInput, the scanner to read the user input
-     * 
      */
     public static final int MAX_LEVELS = 256;
     public static final char WALL = '#';
@@ -97,7 +96,7 @@ public class Game {
 
     /**
      * Constructor
-     * 
+     *
      * @param scanUserInput the scanner to read the user input
      */
     public Game(Scanner scanUserInput) {
@@ -132,7 +131,7 @@ public class Game {
                 exitGame();
                 break;
 
-            default :
+            default:
                 System.out.println("This key doesnt mean anything");
                 System.exit(0);
                 break;
@@ -192,7 +191,7 @@ public class Game {
 
     /**
      * This method plays the game.
-     * 
+     *
      * @return the game state
      */
     public int play() {
@@ -251,12 +250,10 @@ public class Game {
                 //handle the user input, depending on the user input, we restart a new game, leave the game, or print an error and leave the game
                 if (userInput == YES) {
                     return GAME_RESTART;
-                }
-                else if (userInput == NO){
+                } else if (userInput == NO) {
                     System.out.println("Goodbye !");
                     return GAME_OVER;
-                }
-                else  {
+                } else {
                     System.out.println("Error, this key doesnt mean anything");
                     return GAME_INPUT_USER_ERROR;
                 }
@@ -270,17 +267,15 @@ public class Game {
                 //handle the user input, depending on the user input, we restart a new game, leave the game, or print an error and leave the game
                 if (userInput == YES) {
                     return GAME_RESTART;
-                }
-                else if (userInput == NO) {
+                } else if (userInput == NO) {
                     System.out.println("Well played and Goodbye !");
                     return GAME_OVER;
-                }
-                else {
+                } else {
                     System.out.println("Error, this key doesnt mean anything");
                     return GAME_INPUT_USER_ERROR;
                 }
 
-            case LOST :
+            case LOST:
                 // ask the users
                 System.out.println("You lost your game, do you want to play again ?");
                 printYesNo();
@@ -289,12 +284,10 @@ public class Game {
                 //handle the user input, depending on the user input, we restart a new game, leave the game, or print an error and leave the game
                 if (userInput == YES) {
                     return GAME_RESTART;
-                }
-                else if (userInput == NO) {
+                } else if (userInput == NO) {
                     System.out.println("Try another time !");
                     return GAME_OVER;
-                }
-                else {
+                } else {
                     System.out.println("Error, this key doesnt mean anything");
                     return GAME_INPUT_USER_ERROR;
                 }
@@ -308,17 +301,15 @@ public class Game {
                 //handle the user input, depending on the user input, we restart a new game, leave the game, or print an error and leave the game
                 if (userInput == YES) {
                     return GAME_RESTART;
-                }
-                else if (userInput == NO) {
+                } else if (userInput == NO) {
                     System.out.println("Sad to see you leave !");
                     return GAME_OVER;
-                }
-                else {
+                } else {
                     System.out.println("Error, this key doesnt mean anything");
                     return GAME_INPUT_USER_ERROR;
                 }
 
-            default :
+            default:
                 // if no result is found, we send an error
                 return GAME_END_ERROR;
 

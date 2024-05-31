@@ -10,9 +10,9 @@ import static game.Game.EXIT;
 
 /**
  * Exit
- * 
+ * <p>
  * This class is used to manage the Exit entities.
- * 
+ * <p>
  * The Exit entities are represented by the character 'E' (EXIT const) in the level file.
  */
 public class Exit implements Entities {
@@ -23,7 +23,7 @@ public class Exit implements Entities {
 
     /**
      * Constructor
-     * 
+     *
      * @param level the level array
      */
     public Exit(char[][] level) {
@@ -41,7 +41,7 @@ public class Exit implements Entities {
 
     /**
      * This method checks if a position is an Exit.
-     * 
+     *
      * @param p the position to check
      * @return true if the position is an Exit, false otherwise
      */
@@ -56,16 +56,16 @@ public class Exit implements Entities {
 
     /**
      * This method returns all the Exit positions in a specific level.
-     * 
+     *
      * @param l the level
      * @return a list of all the Exit positions
      */
-    static List<Pos> allPos (Level l) {
+    static List<Pos> allPos(Level l) {
         // get the level array
         char[][] level = l.getLevel();
 
         // create a list of all the Exit positions
-        List<Pos> all  = new ArrayList<Pos>();
+        List<Pos> all = new ArrayList<Pos>();
         for (int i = 0; i < level.length; i++) {
             for (int j = 0; j < level[i].length; j++) {
                 // if it's an Exit, put its position in all to fill the list
@@ -81,7 +81,7 @@ public class Exit implements Entities {
 
     /**
      * This method returns all the Exit positions.
-     * 
+     *
      * @return a list of all the Exit positions
      */
     public List<Pos> getAllPos() {
@@ -90,7 +90,7 @@ public class Exit implements Entities {
 
     /**
      * This method checks if the player is on an Exit.
-     * 
+     *
      * @param playerPos the player position
      * @return true if the player is on an Exit, false otherwise
      */

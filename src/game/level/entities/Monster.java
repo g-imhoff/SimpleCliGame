@@ -9,17 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static game.Game.MONSTER;
-import static game.Game.UP;
-import static game.Game.DOWN;
-import static game.Game.LEFT;
-import static game.Game.RIGHT;
-import static game.Game.KILLED;
+import static game.Game.*;
+
 /**
  * Monster
- * 
+ * <p>
  * This class is used to manage the Monster entities.
- * 
+ * <p>
  * The Monster entities are represented by the character 'M' (MONSTER const) in the level file.
  */
 public class Monster implements Entities {
@@ -30,7 +26,7 @@ public class Monster implements Entities {
 
     /**
      * Constructor
-     * 
+     *
      * @param level the level array
      */
     public Monster(char[][] level) {
@@ -48,7 +44,7 @@ public class Monster implements Entities {
 
     /**
      * This method checks if a position is a Monster.
-     * 
+     *
      * @param p the position to check
      * @return true if the position is a Monster, false otherwise
      */
@@ -63,15 +59,15 @@ public class Monster implements Entities {
 
     /**
      * This method returns all the Monster positions in a specific level.
-     * 
+     *
      * @param l the level
      * @return a list of all the Monster positions
      */
-    public static List<Pos> allPos (Level l) {
+    public static List<Pos> allPos(Level l) {
         // get level array
         char[][] level = l.getLevel();
         // create a list, we will fill this list with all the Monster entities position 
-        List<Pos> all  = new ArrayList<Pos>();
+        List<Pos> all = new ArrayList<Pos>();
 
         // search all the Monster entities position in the level
         for (int i = 0; i < level.length; i++) {
@@ -89,7 +85,7 @@ public class Monster implements Entities {
 
     /**
      * This method returns all the Monster positions.
-     * 
+     *
      * @return a list of all the Monster positions
      */
     public List<Pos> getAllPos() {
@@ -98,8 +94,8 @@ public class Monster implements Entities {
 
     /**
      * This method as 80% of chance to moves the Monster in the level. (80% for each monster to move)
-     * 
-     * @param level the level array
+     *
+     * @param level     the level array
      * @param playerPos the player position
      * @return the new level array
      */
@@ -177,7 +173,7 @@ public class Monster implements Entities {
 
     /**
      * This method checks if the player is on a Monster.
-     * 
+     *
      * @param playerPos the player position
      * @return true if the player is on a Monster, false otherwise
      */

@@ -1,7 +1,7 @@
 package game.tools.aStar;
 
-import game.tools.Pos;
 import game.tools.CouplePos;
+import game.tools.Pos;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ import static game.Game.*;
 
 /**
  * fastestPathSearcher
- * 
+ * <p>
  * This class is used to find the fastest path between two positions.
  */
 public class fastestPathSearcher {
@@ -35,7 +35,7 @@ public class fastestPathSearcher {
 
     /**
      * Constructor
-     * 
+     *
      * @param levelCost the cost (f, g, h) of all the positions
      */
     public fastestPathSearcher(Cost[][] levelCost) {
@@ -44,9 +44,9 @@ public class fastestPathSearcher {
 
     /**
      * This method searches the fastest path between two positions.
-     * 
+     *
      * @param startPos the start position
-     * @param destPos the destination position
+     * @param destPos  the destination position
      * @return the direction to go
      */
     public char search(Pos startPos, Pos destPos) {
@@ -78,7 +78,7 @@ public class fastestPathSearcher {
             }
 
             if (levelCost[x - 1][y] != null) {
-                Pos up = new Pos( x - 1, y);
+                Pos up = new Pos(x - 1, y);
                 openPos(up);
             }
 
@@ -138,7 +138,7 @@ public class fastestPathSearcher {
 
     /**
      * This method returns the path between the start and the destination.
-     * 
+     *
      * @return the path between the start and the destination
      */
     public ArrayList<Pos> getPath() {
@@ -169,7 +169,7 @@ public class fastestPathSearcher {
 
     /**
      * This method returns the parent position of a position.
-     * 
+     *
      * @param pos the position
      * @return the parent position
      */
@@ -184,7 +184,7 @@ public class fastestPathSearcher {
 
     /**
      * This method opens a position.
-     * 
+     *
      * @param p the position to open
      */
     public void openPos(Pos p) {
@@ -208,9 +208,9 @@ public class fastestPathSearcher {
 
     /**
      * This method returns the direction to go between two positions, it basically give if you need to go UP, DOWN, LEFT or RIGHT from two positions.
-     * 
+     *
      * @param myPos the position of the entity
-     * @param toGo the position to go
+     * @param toGo  the position to go
      * @return the direction to go
      */
     public char posToMove(Pos myPos, Pos toGo) {

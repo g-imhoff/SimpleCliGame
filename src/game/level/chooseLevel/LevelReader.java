@@ -1,21 +1,17 @@
 package game.level.chooseLevel;
 
-import static game.Game.MIN_ROWS_SIZE;
-import static game.Game.MAX_ROWS_SIZE;
-import static game.Game.MIN_COLS_SIZE;
-import static game.Game.MAX_COLS_SIZE;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static game.Game.*;
+
 /**
  * LevelReader
- * 
+ * <p>
  * This class is used to read a level from a file.
- * 
+ * <p>
  * The level is read from a file and put into a char[][].
- * 
  */
 
 public class LevelReader {
@@ -31,7 +27,7 @@ public class LevelReader {
 
     /**
      * Constructor
-     * 
+     *
      * @param levelPath the path to the level file
      */
     public LevelReader(String levelPath) {
@@ -56,7 +52,7 @@ public class LevelReader {
 
     /**
      * This method reads the level from the file and put it into a char[][] array.
-     * 
+     *
      * @return the level in a char[][] array
      */
 

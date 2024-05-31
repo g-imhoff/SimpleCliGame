@@ -2,7 +2,7 @@ package game.tools;
 
 /**
  * Pos
- * 
+ * <p>
  * This class is used to manage a position.
  */
 public class Pos {
@@ -14,7 +14,7 @@ public class Pos {
 
     /**
      * Constructor
-     * 
+     *
      * @param x the x position
      * @param y the y position
      */
@@ -25,6 +25,7 @@ public class Pos {
 
     /**
      * This method returns the x position.
+     *
      * @return the x position
      */
     public int getX() {
@@ -33,6 +34,7 @@ public class Pos {
 
     /**
      * This method returns the y position.
+     *
      * @return the y position
      */
     public int getY() {
@@ -41,6 +43,7 @@ public class Pos {
 
     /**
      * This method sets the x position.
+     *
      * @param x the new x position
      */
     public void setX(int x) {
@@ -49,6 +52,7 @@ public class Pos {
 
     /**
      * This method sets the y position.
+     *
      * @param y the new y position
      */
     public void setY(int y) {
@@ -57,6 +61,7 @@ public class Pos {
 
     /**
      * This method returns the position in a string, used for print on the terminal or things like that.
+     *
      * @return the position in a string
      */
     public String toString() {
@@ -65,7 +70,7 @@ public class Pos {
 
     /**
      * This method returns the distance between two positions.
-     * 
+     *
      * @param p1 the first position
      * @param p2 the second position
      * @return the distance between the two positions
@@ -76,10 +81,11 @@ public class Pos {
 
     /**
      * This method checks if two position as the same coordinates.
+     *
      * @param p the position to compare
      * @return true if the two positions have the same coordinates, false otherwise
      */
-    public Boolean equals (Pos p) {
+    public Boolean equals(Pos p) {
         return this.x == p.getX() && this.y == p.getY();
     }
 }

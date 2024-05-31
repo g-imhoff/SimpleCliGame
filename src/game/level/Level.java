@@ -18,7 +18,7 @@ import static game.Game.*;
 
 /**
  * Level
- * 
+ * <p>
  * This class is used to manage the level.
  */
 public class Level {
@@ -43,11 +43,12 @@ public class Level {
     /**
      * Constructor
      */
-    public Level() {}
+    public Level() {
+    }
 
     /**
      * This method chooses a level.
-     * 
+     *
      * @param scanUserInput the scanner to read the user input
      */
     public void chooseLevel(Scanner scanUserInput) {
@@ -99,7 +100,7 @@ public class Level {
 
     /**
      * This method returns the level.
-     * 
+     *
      * @return the level
      */
     public char[][] getLevel() {
@@ -108,14 +109,16 @@ public class Level {
 
     /**
      * This method sets the level.
-     * 
+     *
      * @param level the level
      */
-    public void setLevel(char[][] level) { this.level = level; }
+    public void setLevel(char[][] level) {
+        this.level = level;
+    }
 
     /**
      * This method returns the value of a position in the level.
-     * 
+     *
      * @param p the position
      * @return the value of the position
      */
@@ -138,7 +141,7 @@ public class Level {
 
     /**
      * This method moves the player.
-     * 
+     *
      * @param scanUserInput the scanner to read the user input
      * @return the game state
      */
@@ -189,7 +192,7 @@ public class Level {
 
     /**
      * This method give you the possibilty to get the player.
-     * 
+     *
      * @return the player
      */
     public Player getP() {
@@ -198,7 +201,7 @@ public class Level {
 
     /**
      * This method give you the possibilty to get the door.
-     * 
+     *
      * @return the door
      */
 
@@ -208,7 +211,7 @@ public class Level {
 
     /**
      * This method give you the possibilty to get the treasure.
-     * 
+     *
      * @return the treasure
      */
     public Treasure getT() {
@@ -217,7 +220,7 @@ public class Level {
 
     /**
      * This method give you the possibilty to get the monster.
-     * 
+     *
      * @return the monster
      */
     public Monster getM() {
@@ -226,6 +229,7 @@ public class Level {
 
     /**
      * This method give you the number of empty space in the level.
+     *
      * @param level the level
      * @return the number of empty space
      */
@@ -244,9 +248,9 @@ public class Level {
 
     /**
      * This method returns the position of a specific space in the level.
-     * 
+     *
      * @param numberSpace the number of the space
-     * @param level the level
+     * @param level       the level
      * @return the position of the space
      */
     public static Pos spaceToPos(int numberSpace, char[][] level) {
@@ -259,7 +263,7 @@ public class Level {
                 if (level[i][j] == ' ') count++;
 
                 // if we reach the number of the space, return the position
-                if(count == numberSpace) {
+                if (count == numberSpace) {
                     Pos p = new Pos(i, j);
 
                     return p;

@@ -9,7 +9,7 @@ import static game.Game.*;
 
 /**
  * LevelGenerator
- * 
+ * <p>
  * This class is used to generate a level.
  */
 public class LevelGenerator {
@@ -21,7 +21,7 @@ public class LevelGenerator {
 
     /**
      * Constructor
-     * 
+     *
      * @param cols the number of columns
      * @param rows the number of rows
      */
@@ -32,7 +32,7 @@ public class LevelGenerator {
 
     /**
      * This method generates a level, by adding the limits, the player, the monster, the treasure and the exit.
-     * 
+     *
      * @return the level
      */
     public char[][] generateLevel() {
@@ -52,7 +52,7 @@ public class LevelGenerator {
 
     /**
      * This method creates the limits of the level.
-     * 
+     *
      * @param level the level
      * @return the level with the limits
      */
@@ -74,8 +74,8 @@ public class LevelGenerator {
 
     /**
      * This method adds an entity to the level.
-     * 
-     * @param level the level
+     *
+     * @param level      the level
      * @param entityType the entity type
      * @return the level with the entity
      */

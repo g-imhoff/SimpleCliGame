@@ -1,4 +1,4 @@
-import game.*;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+import game.Game;
 
 import java.util.Scanner;
 

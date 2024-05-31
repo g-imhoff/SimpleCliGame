@@ -2,7 +2,7 @@ package game.tools.aStar;
 
 /**
  * Cost
- * 
+ * <p>
  * This class is used to manage the cost of a position.
  */
 public class Cost {
@@ -15,7 +15,7 @@ public class Cost {
 
     /**
      * Constructor
-     * 
+     *
      * @param gCost the cost to move from the starting point to a given position
      * @param fCost the total cost of a position
      * @param hCost the cost to move from a given position to the goal
@@ -28,6 +28,7 @@ public class Cost {
 
     /**
      * This method returns the g cost.
+     *
      * @return the g cost
      */
     public int getGCost() {
@@ -36,6 +37,7 @@ public class Cost {
 
     /**
      * This method returns the f cost.
+     *
      * @return the f cost
      */
     public int getFCost() {
@@ -44,6 +46,7 @@ public class Cost {
 
     /**
      * This method returns the h cost.
+     *
      * @return the h cost
      */
     public int getHCost() {
@@ -52,6 +55,7 @@ public class Cost {
 
     /**
      * This method returns the cost of a position in a string, used for print on the terminal or things like that.
+     *
      * @return the cost of a position in a string
      */
     public String toString() {

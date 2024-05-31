@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 import static game.Game.TREASURE;
+
 /**
  * Treasure
- * 
+ * <p>
  * This class is used to manage the Treasure entities.
- * 
+ * <p>
  * The Treasure entities are represented by the character 'T' (TREASURE const) in the level file.
  */
 public class Treasure implements Entities {
@@ -24,7 +24,7 @@ public class Treasure implements Entities {
 
     /**
      * Constructor
-     * 
+     *
      * @param level the level array
      */
     public Treasure(char[][] level) {
@@ -42,7 +42,7 @@ public class Treasure implements Entities {
 
     /**
      * This method checks if a position is an Treasure.
-     * 
+     *
      * @param p the position to check
      * @return true if the position is an Treasure, false otherwise
      */
@@ -57,16 +57,16 @@ public class Treasure implements Entities {
 
     /**
      * This method returns all the Treasure positions in a specific level.
-     * 
+     *
      * @param l the level
      * @return a list of all the Treasure positions
      */
-    static List<Pos> allPos (Level l) {
+    static List<Pos> allPos(Level l) {
         // get the level
         char[][] level = l.getLevel();
 
         // create a list of all the Treasure positions
-        List<Pos> all  = new ArrayList<Pos>();
+        List<Pos> all = new ArrayList<Pos>();
 
         // search all the Treasure entities position in the level
         for (int i = 0; i < level.length; i++) {
@@ -84,7 +84,7 @@ public class Treasure implements Entities {
 
     /**
      * This method returns all the Treasure positions.
-     * 
+     *
      * @return a list of all the Treasure positions
      */
     public List<Pos> getAllPos() {
@@ -94,7 +94,7 @@ public class Treasure implements Entities {
     /**
      * This method generates a new Treasure in the level.
      * This method don't create always a new Treasure, it's random. (10% chance to create a new Treasure)
-     * 
+     *
      * @param level the level array
      * @return the level array with the new Treasure
      */
@@ -110,7 +110,7 @@ public class Treasure implements Entities {
             // get the number of empty space in the level
             int emptySpace = Level.howManyEmpty(level);
             // generate a random number between 1 and the number of empty space
-            int rand_int2 = rand.nextInt(emptySpace - 1) + 1; 
+            int rand_int2 = rand.nextInt(emptySpace - 1) + 1;
             // get the position of the new Treasure
             Pos posNewTreasure = Level.spaceToPos(rand_int2, level);
 
@@ -129,8 +129,8 @@ public class Treasure implements Entities {
 
     /**
      * This method adds a Treasure in the level.
-     * 
-     * @param p the position of the new Treasure
+     *
+     * @param p     the position of the new Treasure
      * @param level the level array
      * @return the level array with the new Treasure
      */
@@ -141,7 +141,7 @@ public class Treasure implements Entities {
 
     /**
      * This method checks if the player is on a Treasure.
-     * 
+     *
      * @param playerPos the player position
      * @return true if the player is on a Treasure, false otherwise
      */
@@ -167,7 +167,7 @@ public class Treasure implements Entities {
     /**
      * This method prints the Treasure in the level.
      * Sometimes, monster can be overwriten on the Treasure, when the monster moves, we need to print back the Treasure.
-     * 
+     *
      * @param level the level array
      * @return the level array with the Treasure
      */
