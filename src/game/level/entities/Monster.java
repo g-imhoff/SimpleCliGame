@@ -115,42 +115,69 @@ public class Monster implements Entities {
                 AStarAlgo algo = new AStarAlgo(monsterPos, playerPos, level);
                 // search the key to do
                 char keyToDoResult = algo.search();
+                System.out.println(keyToDoResult);
 
+                int x;
+                int y;
                 // switch the key to do
                 switch (keyToDoResult) {
                     case UP:
                         // moves the monster UP
-                        level[monsterPos.getX()][monsterPos.getY()] = ' ';
-                        monsterPos.setX(monsterPos.getX() - 1);
-                        monsterPos.setY(monsterPos.getY());
-                        level[monsterPos.getX()][monsterPos.getY()] = MONSTER;
+                        x = monsterPos.getX();
+                        y = monsterPos.getY();
+
+                        // our fastestPathSearcher don't care about other monster, its important then to verify that one monster doesn't overwrite an other one
+                        if (level[x - 1][y] != MONSTER) {
+                            level[x][y] = ' ';
+                            monsterPos.setX(x - 1);
+                            monsterPos.setY(y);
+                            level[x - 1][y] = MONSTER;
+                        }
 
                         break;
 
                     case DOWN:
-                        // moves the monster DOWN
-                        level[monsterPos.getX()][monsterPos.getY()] = ' ';
-                        monsterPos.setX(monsterPos.getX() + 1);
-                        monsterPos.setY(monsterPos.getY());
-                        level[monsterPos.getX()][monsterPos.getY()] = MONSTER;
+                        // moves the monster UP
+                        x = monsterPos.getX();
+                        y = monsterPos.getY();
+
+                        // our fastestPathSearcher don't care about other monster, its important then to verify that one monster doesn't overwrite an other one
+                        if (level[x + 1][y] != MONSTER) {
+                            level[x][y] = ' ';
+                            monsterPos.setX(x + 1);
+                            monsterPos.setY(y);
+                            level[x + 1][y] = MONSTER;
+                        }
 
                         break;
 
                     case LEFT:
-                        // moves the monster LEFT
-                        level[monsterPos.getX()][monsterPos.getY()] = ' ';
-                        monsterPos.setX(monsterPos.getX());
-                        monsterPos.setY(monsterPos.getY() - 1);
-                        level[monsterPos.getX()][monsterPos.getY()] = MONSTER;
+                        // moves the monster UP
+                        x = monsterPos.getX();
+                        y = monsterPos.getY();
+
+                        // our fastestPathSearcher don't care about other monster, its important then to verify that one monster doesn't overwrite an other one
+                        if (level[x][y - 1] != MONSTER) {
+                            level[x][y] = ' ';
+                            monsterPos.setX(x);
+                            monsterPos.setY(y - 1);
+                            level[x][y - 1] = MONSTER;
+                        }
 
                         break;
 
                     case RIGHT:
-                        // moves the monster RIGHT
-                        level[monsterPos.getX()][monsterPos.getY()] = ' ';
-                        monsterPos.setX(monsterPos.getX());
-                        monsterPos.setY(monsterPos.getY() + 1);
-                        level[monsterPos.getX()][monsterPos.getY()] = MONSTER;
+                        // moves the monster UP
+                        x = monsterPos.getX();
+                        y = monsterPos.getY();
+
+                        // our fastestPathSearcher don't care about other monster, its important then to verify that one monster doesn't overwrite an other one
+                        if (level[x][y + 1] != MONSTER) {
+                            level[x][y] = ' ';
+                            monsterPos.setX(x);
+                            monsterPos.setY(y + 1);
+                            level[x][y + 1] = MONSTER;
+                        }
 
                         break;
 

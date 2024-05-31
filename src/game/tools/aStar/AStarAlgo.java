@@ -77,7 +77,7 @@ public class AStarAlgo {
         for (int i = 0; i < level.length; i++) {
             for (int j = 0; j < level[i].length; j++) {
                 // calculate the cost only in certains condition (for exemple : no cense to calcul it for wall, it's impossible to go through it)
-                if (level[i][j] == ' ' || level[i][j] == DOOR || level[i][j] == TREASURE || level[i][j] == PLAYER) {
+                if (level[i][j] == ' ' || level[i][j] == DOOR || level[i][j] == TREASURE || level[i][j] == PLAYER || level[i][j] == MONSTER) {
                     result[i][j] = initCost(new Pos(i, j)); // initialize the cost
                 }
             }
