@@ -39,7 +39,7 @@ public class AStarAlgo {
         this.startPos = startPos;
         this.goalPos = goalPos;
         this.levelCost = initAllCost(level);
-        this.searcher = new fastestPathSearcher(levelCost, level);
+        this.searcher = new fastestPathSearcher(levelCost);
     }
 
     /**
