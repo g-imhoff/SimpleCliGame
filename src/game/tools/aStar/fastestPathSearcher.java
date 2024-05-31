@@ -3,7 +3,6 @@ package game.tools.aStar;
 import game.tools.Pos;
 import game.tools.CouplePos;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static game.Game.*;

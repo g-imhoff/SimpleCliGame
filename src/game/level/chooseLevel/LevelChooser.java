@@ -18,7 +18,7 @@ import static game.Game.MAX_LEVELS;
  */
 
 public class LevelChooser {
-    private String levelPath = "./level"; // the path to the level folder
+    private static String levelPath = "./level"; // the path to the level folder
     private String levelChoose = ""; // the level we want to play
     private String[] levelNames = new String[MAX_LEVELS]; // all the level names
     private String finalLevelPath = ""; // the final path to the level we want to play

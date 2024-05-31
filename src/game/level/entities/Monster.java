@@ -15,7 +15,13 @@ import static game.Game.DOWN;
 import static game.Game.LEFT;
 import static game.Game.RIGHT;
 import static game.Game.KILLED;
-
+/**
+ * Monster
+ * 
+ * This class is used to manage the Monster entities.
+ * 
+ * The Monster entities are represented by the character 'M' (MONSTER const) in the level file.
+ */
 public class Monster implements Entities {
     List<Pos> allEntities = new ArrayList<Pos>();
 
