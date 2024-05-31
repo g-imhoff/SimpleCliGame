@@ -1,0 +1,270 @@
+@startuml
+package game {
+    class Game {
+      + Game(Scanner):
+      - scanUserInput: Scanner
+      + GAME_RESTART: int
+      + WON: int
+      + NOMOVE: char
+      + MAX_ROWS_SIZE: int
+      + PLAYER: char
+      + GAME_INPUT_USER_ERROR: int
+      + MIN_COLS_SIZE: int
+      + WALL: char
+      + UP: char
+      - l: Level
+      + PLAYING: int
+      + GAME_END_ERROR: int
+      + MIN_ROWS_SIZE: int
+      + EXIT: char
+      + MONSTER: char
+      + GAME_LEFT: int
+      + TREASURE: char
+      + LEAVE: char
+      - numberTreasureCollect: int
+      - numberMonsterKilled: int
+      + RIGHT: char
+      + DOWN: char
+      + MAX_COLS_SIZE: int
+      + YES: char
+      + NO: char
+      + MAX_LEVELS: int
+      + DOOR: char
+      + LOST: int
+      + GAME_OVER: int
+      + GAME_LEVEL_ISSUE_SIZE: int
+      + LEFT: char
+      + KILLED: char
+      + clearScreen(): void
+      + printYesNo(): void
+      + chooseLevel(): void
+      + launchStartingPage(): void
+      + printKeys(): void
+      + generateLevel(): void
+      + printNumberTreasureCollect(): void
+      + exitGame(): void
+      + play(): int
+    }
+
+
+
+    package level {
+
+    Game::l "1" - "1" Level
+
+        class Level {
+          + Level():
+          - p: Player
+          - d: Door
+          - m: Monster
+          - t: Treasure
+          - level: char[][]
+          - e: Exit
+          + returnVal(Pos): char
+          + setLevel(char[][]): void
+          + generateLevel(): void
+          + getLevel(): char[][]
+          + getD(): Door
+          + spaceToPos(int, char[][]): Pos?
+          + howManyEmpty(char[][]): int
+          + move(Scanner): int
+          + getM(): Monster
+          + getP(): Player
+          + printLevel(): void
+          + chooseLevel(Scanner): void
+          + getT(): Treasure
+        }
+
+        package chooseLevel {
+            class LevelChooser {
+              + LevelChooser():
+              - levelPath: String
+              - levelChoose: String
+              - levelNames: String[]
+              - finalLevelPath: String
+              + levelPathModifier(Scanner): void
+              + getAllLevel(): int
+              + choose(Scanner): void
+              + getFinalLevelPath(): String
+            }
+
+            class LevelReader {
+              + LevelReader(String):
+              - columns: int
+              - levelPath: String
+              - rows: int
+              + readLevel(): char[][]
+            }
+        }
+
+        package entities {
+
+            Level::d "1" - "1" Door
+            Level::m "1" - "1" Monster
+            Level::t "1" - "1" Treasure
+            Level::e "1" - "1" Exit
+
+            class Door implements Entities {
+              + Door(char[][]):
+              ~ allEntities: List<Pos>
+              + allPos(Level): List<Pos>
+              + isit(Pos): Boolean
+              + getAllPos(): List<Pos>
+            }
+
+            interface Entities << interface >> {
+              + allEntities: List<Pos>
+              + isit(Pos): Boolean
+              + allPos(Level): List<Pos>?
+              + getAllPos(): List<Pos>
+            }
+
+            class Exit implements Entities {
+              + Exit(char[][]):
+              ~ allEntities: List<Pos>
+              + getAllPos(): List<Pos>
+              + onExit(Pos): Boolean
+              ~ allPos(Level): List<Pos>
+              + isit(Pos): Boolean
+            }
+
+            class Monster implements Entities {
+              + Monster(char[][]):
+              ~ allEntities: List<Pos>
+              + onMonster(Pos): Boolean
+              + getAllPos(): List<Pos>
+              + randomMonsterMove(char[][], Pos): char[][]
+              + allPos(Level): List<Pos>
+              + isit(Pos): Boolean
+            }
+
+            class Treasure implements Entities {
+              + Treasure(char[][]):
+              ~ allEntities: List<Pos>
+              ~ allPos(Level): List<Pos>
+              + getAllPos(): List<Pos>
+              + printBack(char[][]): char[][]
+              + isit(Pos): Boolean
+              + onTreasure(Pos): Boolean
+              + randomNewTreasure(char[][]): char[][]
+              + addTreasure(Pos, char[][]): char[][]
+            }
+        }
+
+        package generateLevel {
+            class LevelGenerator {
+              + LevelGenerator(int, int):
+              - cols: int
+              - rows: int
+              - createLimits(char[][]): char[][]
+              + generateLevel(): char[][]
+              - addEntity(char[][], char): char[][]
+            }
+        }
+    }
+
+    package player {
+        Level::p "1" - "1" Player
+        class Player {
+          + Player(char[][]):
+          - p: Pos
+          + getPos(): Pos
+          + whereIsPlayer(char[][]): Pos?
+          + posAvailable(Pos, char[][]): Boolean
+          + onPlayer(List<Pos>): Boolean
+          + move(Pos, char[][]): char[][]
+          + setPos(Pos): void
+        }
+    }
+
+    package tools {
+        CouplePos::parentPos "1" - "1" Pos
+        CouplePos::pos "1" - "1" Pos
+
+        Door::allEntities "1" - "*" Pos
+        Monster::allEntities "1" - "*" Pos
+        Treasure::allEntities "1" - "*" Pos
+        Exit::allEntities "1" - "*" Pos
+        Entities::allEntities "1" - "0" Pos
+
+        Player::p "1" - "1" Pos
+
+        package aStar {
+            AStarAlgo::startPos "1" - "1" Pos
+            AStarAlgo::goalPos "1" - "1" Pos
+            AStarAlgo::levelCost "1" - "*" Cost
+            AStarAlgo::searcher "1" - "1" fastestPathSearcher
+            class AStarAlgo {
+              + AStarAlgo(Pos, Pos, char[][]):
+              - searcher: fastestPathSearcher
+              - startPos: Pos
+              - goalPos: Pos
+              - levelCost: Cost[][]
+              + initAllCost(char[][]): Cost[][]
+              + printAllCost(): void
+              + initCost(Pos): Cost
+              + getLevelCost(): Cost[][]
+              + search(): char
+            }
+
+            class Cost {
+              + Cost(int, int, int):
+              - gCost: int
+              - hCost: int
+              - fCost: int
+              + getFCost(): int
+              + getGCost(): int
+              + getHCost(): int
+              + toString(): String
+            }
+
+            fastestPathSearcher::currentPos "1" - "1" Pos
+            fastestPathSearcher::startPos "1" - "1" Pos
+            fastestPathSearcher::destPos "1" - "1" Pos
+            fastestPathSearcher::posChecked "1" - "*" Pos
+            fastestPathSearcher::levelCost "1" - "*" Pos
+            fastestPathSearcher::posOpened "1" - "*" Pos
+            fastestPathSearcher::parentPos "1" - "*" CouplePos
+
+            class fastestPathSearcher {
+              + fastestPathSearcher(Cost[][]):
+              - destReached: boolean
+              - currentPos: Pos
+              - startPos: Pos
+              - posChecked: ArrayList<Pos>
+              - levelCost: Cost[][]
+              - destPos: Pos
+              - posOpened: ArrayList<Pos>
+              - parentPos: ArrayList<CouplePos>
+              + findParentPos(Pos): Pos
+              + search(Pos, Pos): char
+              + posToMove(Pos, Pos): char
+              + getPath(): ArrayList<Pos>
+              + openPos(Pos): void
+            }
+        }
+
+        class CouplePos {
+          + CouplePos(Pos, Pos):
+          - parentPos: Pos
+          - pos: Pos
+          + getPos(): Pos
+          + getParentPos(): Pos
+        }
+
+        class Pos {
+          + Pos(int, int):
+          - y: int
+          - x: int
+          + getY(): int
+          + equals(Pos): Boolean
+          + setX(int): void
+          + toString(): String
+          + getX(): int
+          + add(Pos, Pos): Pos
+          + setY(int): void
+        }
+    }
+}
+
+@enduml

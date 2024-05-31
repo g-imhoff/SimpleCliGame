@@ -16,7 +16,7 @@ public class Player {
     /**
      * p, the player position
      */
-    Pos p;
+    private Pos p;
 
     /**
      * Constructor
