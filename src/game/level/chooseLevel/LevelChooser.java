@@ -42,7 +42,6 @@ public class LevelChooser {
             //set the levelChoose instance
             levelChoose = levelNames[resultLevel];
 
-
             // create the level path and set it
             finalLevelPath = levelPath + File.separator + levelChoose;
         } else {

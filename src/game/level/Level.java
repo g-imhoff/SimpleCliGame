@@ -6,10 +6,12 @@ import game.level.entities.Door;
 import game.level.entities.Exit;
 import game.level.entities.Monster;
 import game.level.entities.Treasure;
+import game.level.generateLevel.LevelGenerator;
 import game.player.Player;
 import game.tools.Pos;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import static game.Game.*;
@@ -33,16 +35,33 @@ public class Level {
         String levelPath = levelChooser.getFinalLevelPath();
         LevelReader levelReader = new LevelReader(levelPath);
         level = levelReader.readLevel();
-        p = new Player(level);
-        startPos = p.getPos();
-        d = new Door(level);
-        t = new Treasure(level);
-        e = new Exit(level);
-        m = new Monster(level);
+        if (level != null) {
+            p = new Player(level);
+            startPos = p.getPos();
+            d = new Door(level);
+            t = new Treasure(level);
+            e = new Exit(level);
+            m = new Monster(level);
+        }
     }
 
     public void generateLevel() {
+        Random rand = new Random();
 
+        int cols = rand.nextInt(MAX_COLS_SIZE - MIN_COLS_SIZE) + MIN_COLS_SIZE;
+        int rows = rand.nextInt(MAX_ROWS_SIZE - MIN_ROWS_SIZE) + MIN_ROWS_SIZE;
+
+        LevelGenerator generator = new LevelGenerator(cols, rows);
+        level = generator.generateLevel();
+
+        if (level != null) {
+            p = new Player(level);
+            startPos = p.getPos();
+            d = new Door(level);
+            t = new Treasure(level);
+            e = new Exit(level);
+            m = new Monster(level);
+        }
     }
 
     public char[][] getLevel() {
@@ -58,7 +77,7 @@ public class Level {
     public void printLevel() {
         for (int i = 0; i < level.length; i++) {
             for (int j = 0; j < level[i].length; j++) {
-                System.out.print("  " + level[i][j] + "  ");
+                System.out.print(level[i][j]);
             }
             System.out.print("\n");
         }
@@ -122,5 +141,34 @@ public class Level {
 
     public Pos getStartPos() {
         return startPos;
+    }
+
+    public static int howManyEmpty(char[][] level) {
+        int emptySpace = 0;
+        for (int i = 0; i < level.length; i++) {
+            for (int j = 0; j < level[i].length; j++) {
+                if (level[i][j] == ' ') emptySpace++;
+            }
+        }
+
+        return emptySpace;
+    }
+
+    public static Pos spaceToPos(int numberSpace, char[][] level) {
+        int count = 0;
+
+        for (int i = 0; i < level.length; i++) {
+            for (int j = 0; j < level[i].length; j++) {
+                if (level[i][j] == ' ') count++;
+
+                if(count == numberSpace) {
+                    Pos p = new Pos(i, j);
+
+                    return p;
+                }
+            }
+        }
+
+        return null;
     }
 }

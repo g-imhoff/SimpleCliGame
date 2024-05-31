@@ -1,10 +1,15 @@
 package game.level.chooseLevel;
 
+import static game.Game.MIN_ROWS_SIZE;
+import static game.Game.MAX_ROWS_SIZE;
+import static game.Game.MIN_COLS_SIZE;
+import static game.Game.MAX_COLS_SIZE;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class LevelReader extends LevelChooser {
+public class LevelReader {
     private String levelPath;
     private int rows, columns;
 
@@ -29,6 +34,9 @@ public class LevelReader extends LevelChooser {
     }
 
     public char[][] readLevel() {
+        if (rows <= MIN_ROWS_SIZE || rows >= MAX_ROWS_SIZE || columns <= MIN_COLS_SIZE || columns >= MAX_COLS_SIZE) {
+            return null;
+        }
         char[][] level = new char[rows][columns]; // create a char[][] with the right size
 
         //read the file (location : levelPath)

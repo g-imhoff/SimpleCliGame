@@ -1,9 +1,6 @@
 package game;
 
 import game.level.Level;
-import game.level.entities.Door;
-import game.player.Player;
-import game.tools.Pos;
 
 import java.util.Scanner;
 
@@ -28,6 +25,7 @@ public class Game {
     public static final int PLAYING = 0;
     public static final int GAME_LEFT = -1;
     public static final int LOST = -2;
+    public static final int GAME_LEVEL_ISSUE_SIZE = -3;
 
     public static final char YES = 'y';
     public static final char NO = 'n';
@@ -41,6 +39,11 @@ public class Game {
 
     private int numberTreasureCollect = 0;
     private int numberMonsterKilled = 0;
+
+    public static final int MIN_ROWS_SIZE = 4;
+    public static final int MIN_COLS_SIZE = 4;
+    public static final int MAX_ROWS_SIZE = 16;
+    public static final int MAX_COLS_SIZE = 16;
 
     private final Scanner scanUserInput;
 
@@ -112,6 +115,11 @@ public class Game {
 
     public int play() {
         int result = PLAYING;
+
+        if (l.getLevel() == null) {
+            result = GAME_LEVEL_ISSUE_SIZE;
+        }
+
         while (result == PLAYING) {
             clearScreen();
             l.printLevel();
@@ -179,6 +187,23 @@ public class Game {
                 }
                 else if (userInput == NO) {
                     System.out.println("Try another time !");
+                    return GAME_OVER;
+                }
+                else {
+                    System.out.println("Error, this key doesnt mean anything");
+                    return GAME_INPUT_USER_ERROR;
+                }
+
+            case GAME_LEVEL_ISSUE_SIZE:
+                System.out.println("Your level doesn't match the level size condition, do you want to choose another level ?");
+                printYesNo();
+                userInput = scanUserInput.next().charAt(0);
+
+                if (userInput == YES) {
+                    return GAME_RESTART;
+                }
+                else if (userInput == NO) {
+                    System.out.println("Sad to see you leave !");
                     return GAME_OVER;
                 }
                 else {
