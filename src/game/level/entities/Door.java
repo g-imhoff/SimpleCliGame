@@ -8,9 +8,26 @@ import java.util.List;
 
 import static game.Game.DOOR;
 
+/**
+ * Door
+ * 
+ * This class is used to manage the Door entities.
+ * 
+ * The Door entities are represented by the character 'P' (DOOR const) in the level file.
+ * 
+ */
+
 public class Door implements Entities {
+    /**
+     * allEntities, a list of all the entities position
+     */
     List<Pos> allEntities = new ArrayList<Pos>(); //all the entities position is here
 
+    /**
+     * Constructor
+     * 
+     * @param level the level array
+     */
     public Door(char[][] level) {
         // search all the entities position
         for (int i = 0; i < level.length; i++) {
@@ -23,6 +40,13 @@ public class Door implements Entities {
         }
     }
 
+    /**
+     * This method checks if a position is a Door.
+     * 
+     * @param p the position to check
+     * @return true if the position is a Door, false otherwise
+     */
+
     public Boolean isit(Pos p) {
         //check if there is a position with the same
         for (Pos Entity : allEntities) {
@@ -31,6 +55,13 @@ public class Door implements Entities {
 
         return false;
     }
+
+    /**
+     * This method returns all the Door positions.
+     * 
+     * @param l the level
+     * @return a list of all the Door positions
+     */
 
     public static List<Pos> allPos (Level l) {
         char[][] level = l.getLevel();
@@ -46,6 +77,12 @@ public class Door implements Entities {
 
         return all;
     }
+
+    /**
+     * This method returns all the Door positions.
+     * 
+     * @return a list of all the Door positions
+     */
 
     public List<Pos> getAllPos() {
         return allEntities;

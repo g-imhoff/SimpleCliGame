@@ -6,20 +6,41 @@ import java.util.Scanner;
 
 import static game.Game.MAX_LEVELS;
 
-public class LevelChooser {
-    private String levelPath = "./level"; // where is the folder containing all the level files
-    private String levelChoose = ""; // what level we want to play
-    private String[] levelNames = new String[MAX_LEVELS]; // all the level in levelPath
-    private String finalLevelPath = ""; // the path to the level we want to play
+/**
+ * LevelChooser
+ * 
+ * This class is used to choose a level in the level folder.
+ * It will print all the levels in the folder and let the user choose one.
+ * If the folder is empty, it will ask the user to change the path of the level folder.
+ * 
+ * The level folder is set by default at "./level".
+ * 
+ */
 
+public class LevelChooser {
+    private String levelPath = "./level"; // the path to the level folder
+    private String levelChoose = ""; // the level we want to play
+    private String[] levelNames = new String[MAX_LEVELS]; // all the level names
+    private String finalLevelPath = ""; // the final path to the level we want to play
+
+    /**
+     * Constructor
+     */
     public LevelChooser() {}
+    
+    /**
+     * This method allows the user to choose a level from the available levels.
+     * It first prints all available levels. If the list of levels is empty or cannot be retrieved,
+     * it prompts the user to change the level folder path and restarts the level selection process.
+     * 
+     * @param scanUserInput the Scanner object used to read user input from the console.
+     */
 
     public void choose(Scanner scanUserInput) {
-        //print all the available level
+        // get all the levels
         int result = getAllLevel();
 
-        // if printAllLevel worked fine, we keep the process of choosing
-        // if printAllLevel failed, we change the path of the level folder and restart choose
+        // if we found some levels
         if (result == 1) {
             // print all the levels
             for (int i = 0; levelNames[i] != null; i++) {
@@ -51,6 +72,13 @@ public class LevelChooser {
         }
     }
 
+    /**
+     * This method retrieves all the levels in the level folder.
+     * It filters the files in the folder to only include .txt files.
+     * 
+     * @return 1 if levels are found, 0 otherwise.
+     */
+
     public int getAllLevel() {
         //open the level folder
         File dossier = new File(levelPath);
@@ -77,16 +105,26 @@ public class LevelChooser {
         return 0; //this tell us that the folder where we searched level contains absolutly no level
     }
 
+    /**
+     * This method allows the user to change the path of the level folder.
+     * 
+     * @param scanUserInput the Scanner object used to read user input from the console.
+     */
+
     public void levelPathModifier(Scanner scanUserInput) {
-        // let the user change the path of the level folder
         System.out.println("Where is your level folder ?");
         levelPath = scanUserInput.next();
         System.out.println("Your level folder is now set at : " + levelPath);
         choose(scanUserInput);
     }
 
+    /**
+     * This method returns the final path to the level we want to play.
+     * 
+     * @return the final path to the level we want to play.
+     */
+
     public String getFinalLevelPath() {
-        // just return the finalLevelPath
         return finalLevelPath;
     }
 }

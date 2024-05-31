@@ -9,10 +9,31 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * LevelReader
+ * 
+ * This class is used to read a level from a file.
+ * 
+ * The level is read from a file and put into a char[][].
+ * 
+ */
+
 public class LevelReader {
+    /**
+     * The path to the level file
+     */
     private String levelPath;
+
+    /**
+     * The number of rows and columns in the level
+     */
     private int rows, columns;
 
+    /**
+     * Constructor
+     * 
+     * @param levelPath the path to the level file
+     */
     public LevelReader(String levelPath) {
         this.levelPath = levelPath; //set the levelPath
 
@@ -33,7 +54,14 @@ public class LevelReader {
         }
     }
 
+    /**
+     * This method reads the level from the file and put it into a char[][] array.
+     * 
+     * @return the level in a char[][] array
+     */
+
     public char[][] readLevel() {
+        // if the rows or the columns are not in the right range, return null
         if (rows <= MIN_ROWS_SIZE || rows >= MAX_ROWS_SIZE || columns <= MIN_COLS_SIZE || columns >= MAX_COLS_SIZE) {
             return null;
         }
